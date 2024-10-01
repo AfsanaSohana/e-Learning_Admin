@@ -1,24 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import * as React from 'react';
+import Dashboard from './pages/Dashboard';
+import Register from './pages/Register';
+import Login from './pages/Login';
+import Protected from './components/protected';
+
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
+  const isSignedIn = localStorage.getItem("access_token") || false;
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+   
+      <Routes> 
+        <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
+          <Route path={"/"} element={
+            <Protected isSignedIn={isSignedIn} >
+              <Dashboard />
+            </Protected>
+          } />
+        <Route path="/" element={<Dashboard />} />
+       
+      </Routes>
+    </BrowserRouter>
   );
 }
 
