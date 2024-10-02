@@ -287,3 +287,8 @@
     background: var(--dark);
     border-color: var(--primary);
 }
+
+.bg-light {
+    background-color: #FFF !important;
+
+}

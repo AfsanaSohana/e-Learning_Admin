@@ -1,6 +1,23 @@
 import React from 'react'
+import { Link,useLocation } from 'react-router-dom'
 
 function Sidebar() {
+    const activeMenu=(e)=>{
+        document.querySelectorAll('.submenu').forEach(
+            function(e){
+                e.classList.remove('active');
+            }
+        )
+        const childElement = e.target.parentElement.querySelector('.submenu');
+        if(childElement && childElement.classList.contains('submenu')){
+            childElement.classList.add('active');
+        }
+    }
+
+	const location = useLocation();
+	const isLinkActive = (path)=>{
+        return location.pathname == path ? 'active' : "";
+    }
   return (
      <div className="sidebar pe-4 pb-3">
                     <nav className="navbar bg-secondary navbar-dark">
@@ -20,11 +37,11 @@ function Sidebar() {
                         <div className="navbar-nav w-100">
                             <a href="index.html" className="nav-item nav-link active"><i className="fa fa-tachometer-alt me-2"></i>Dashboard</a>
                             <div className="nav-item dropdown">
-                                <a href="#" className="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i className="fa fa-laptop me-2"></i>Elements</a>
+                                <a href="#" className="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i className="fa fa-laptop me-2"></i>Course Details</a>
                                 <div className="dropdown-menu bg-transparent border-0">
-                                    <a href="button.html" className="dropdown-item">Buttons</a>
-                                    <a href="typography.html" className="dropdown-item">Typography</a>
-                                    <a href="element.html" className="dropdown-item">Other Elements</a>
+                                    <a href="button.html" className="dropdown-item">Course Detail add</a>
+                                    <a href="typography.html" className="dropdown-item">Course Detail list</a>
+                                    
                                 </div>
                             </div>
                             <a href="widget.html" className="nav-item nav-link"><i className="fa fa-th me-2"></i>Widgets</a>

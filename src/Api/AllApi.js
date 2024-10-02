@@ -9,7 +9,7 @@ const login = async (data) => {
             url: LOGIN_ENDPOINT,
             data: data
         });
-
+        
         if(response.data.data.token){
             localStorage.setItem("access_token", response.data.data.token);
             localStorage.setItem("userdata", response.data.data.data);
