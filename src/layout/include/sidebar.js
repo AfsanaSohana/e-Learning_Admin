@@ -39,22 +39,9 @@ function Sidebar() {
                             <div className="nav-item dropdown">
                                 <a href="#" className="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i className="fa fa-laptop me-2"></i>Course Details</a>
                                 <div className="dropdown-menu bg-transparent border-0">
-                                    <a href="button.html" className="dropdown-item">Course Detail add</a>
-                                    <a href="typography.html" className="dropdown-item">Course Detail list</a>
+                                    <Link to='/course/add'className="dropdown-item"> Add New </Link>
+                                    <Link to='/course'className="dropdown-item"> list </Link>
                                     
-                                </div>
-                            </div>
-                            <a href="widget.html" className="nav-item nav-link"><i className="fa fa-th me-2"></i>Widgets</a>
-                            <a href="form.html" className="nav-item nav-link"><i className="fa fa-keyboard me-2"></i>Forms</a>
-                            <a href="table.html" className="nav-item nav-link"><i className="fa fa-table me-2"></i>Tables</a>
-                            <a href="chart.html" className="nav-item nav-link"><i className="fa fa-chart-bar me-2"></i>Charts</a>
-                            <div className="nav-item dropdown">
-                                <a href="#" className="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i className="far fa-file-alt me-2"></i>Pages</a>
-                                <div className="dropdown-menu bg-transparent border-0">
-                                    <a href="signin.html" className="dropdown-item">Sign In</a>
-                                    <a href="signup.html" className="dropdown-item">Sign Up</a>
-                                    <a href="404.html" className="dropdown-item">404 Error</a>
-                                    <a href="blank.html" className="dropdown-item">Blank Page</a>
                                 </div>
                             </div>
                         </div>

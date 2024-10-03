@@ -1,5 +1,6 @@
-import React from 'react'
-import AdminLayout from '../../../layout/adminLayout'
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import AdminLayout from '../../../layout/adminLayout';
 import { useNavigate } from 'react-router-dom';
 import {useParams} from "react-router-dom";
 
@@ -33,7 +34,7 @@ function CourseAdd() {
         try{
             let apiurl='';
             if(inputs.id!=''){
-                apiurl=`/course/${inputs.id}`;
+                apiurl=`/course/edit/${inputs.id}`;
             }else{
                 apiurl=`/course/create`;
             }
@@ -44,6 +45,7 @@ function CourseAdd() {
                 url: `${process.env.REACT_APP_API_URL}${apiurl}`,
                 data: inputs
             });
+            console.log(response)
             navigate('/course')
         } 
         catch(e){
@@ -80,7 +82,7 @@ function CourseAdd() {
                                                 <div className="col-12">
                                                     <div className="form-group">
                                                     <label for="first-name-vertical">Name</label>
-                                                    <input type="text" id="fist-name-vertical" className="form-control" defaultValue={inputs.course_name} name="namcourse_namee" onChange={handleChange} placeholder="Enter course_name"/>
+                                                    <input type="text" id="fist-name-vertical" className="form-control" defaultValue={inputs.course_name} name="course_name" onChange={handleChange} placeholder="Enter course_name"/>
                                                     </div>
                                                 </div>
                                                 <div className="col-12">

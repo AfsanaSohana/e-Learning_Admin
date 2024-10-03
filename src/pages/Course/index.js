@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import React from 'react';
 import AdminLayout from '../../layout/adminLayout';
+import { Link } from 'react-router-dom';
 
 
 function Course() {
@@ -12,7 +12,7 @@ function Course() {
     }, []);
 
     function getDatas() {
-        axios.get(`${process.env.REACT_APP_API_URL}/course/index`).then(function(response) {
+        axios.get(`${process.env.REACT_APP_API_URL}/course`).then(function(response) {
             setData(response.data.data);
         });
     }
@@ -35,12 +35,12 @@ function Course() {
                                 <th scope="col">Course Category</th>
                                 <th scope="col">duration</th>
                                 <th scope="col">Course Fee</th>
+                                <th scope="col">Action</th>
                             </tr>
                         </thead>
                         <tbody>
                                     {data && data.map((d, key) =>
                                         <tr key={d.id}>
-                                            <td className="text-bold-500">{d.name}</td>
                                             <td>{d.course_name}</td>
                                             <td>{d.batch_id}</td>
                                             <td>{d.course_category}</td>
