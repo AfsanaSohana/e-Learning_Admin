@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import {useParams} from "react-router-dom";
 
 function CourseAdd() {
-      const [inputs, setInputs] = useState({id:'',course_name:'',batch_id:'',course_category:'',duration:'',fees:''});
+      const [inputs, setInputs] = useState({id:'',course_name:'',details:''});
     const navigate=useNavigate();
     const {id} = useParams();
     
@@ -88,26 +88,7 @@ function CourseAdd() {
                                                 <div className="col-12">
                                                     <div className="form-group">
                                                     <label for="email-id-vertical">Batch ID</label>
-                                                    <input type="text" id="email-id-vertical" className="form-control" defaultValue={inputs.batch_id} name="batch_id" onChange={handleChange} placeholder="Hscms12"/>
-                                                    </div>
-                                                </div>
-                                                <div className="col-12">
-                                                    <div className="form-group">
-                                                    <label for="email-id-vertical">Course Category</label>
-                                                    <input type="text" id="email-id-vertical" className="form-control" defaultValue={inputs.course_category} name="course_category" onChange={handleChange} placeholder="Regular Batch"/>
-                                                    </div>
-                                                </div>
-                                                <div className="col-12">
-                                                    <div className="form-group">
-                                                    <label for="email-id-vertical">Duration</label>
-                                                    <input type="text" id="email-id-vertical" className="form-control" defaultValue={inputs.duration} name="duration" onChange={handleChange} placeholder="3.00-5.00 pm"/>
-                                                    </div>
-                                                </div>
-                                              
-                                                <div className="col-12">
-                                                    <div className="form-group">
-                                                    <label for="email-id-vertical">Fees</label>
-                                                    <input type="text" id="email-id-vertical" className="form-control" defaultValue={inputs.fees} name="fees" onChange={handleChange} placeholder="000.00"/>
+                                                    <input type="text" id="email-id-vertical" className="form-control" defaultValue={inputs.batch_id} name="details" onChange={handleChange} placeholder="Hsc 12"/>
                                                     </div>
                                                 </div>
                                                 
