@@ -81,14 +81,14 @@ function CourseAdd() {
                                             <div className="row">
                                                 <div className="col-12">
                                                     <div className="form-group">
-                                                    <label for="first-name-vertical">Name</label>
-                                                    <input type="text" id="fist-name-vertical" className="form-control" defaultValue={inputs.course_name} name="course_name" onChange={handleChange} placeholder="Enter course_name"/>
+                                                    <label for="first-name-vertical"> Course Name</label>
+                                                    <input type="text" id="course_name" className="form-control" defaultValue={inputs.course_name} name="course_name" onChange={handleChange} placeholder="Enter course_name"/>
                                                     </div>
                                                 </div>
                                                 <div className="col-12">
                                                     <div className="form-group">
-                                                    <label for="email-id-vertical">Batch ID</label>
-                                                    <input type="text" id="email-id-vertical" className="form-control" defaultValue={inputs.batch_id} name="details" onChange={handleChange} placeholder="Hsc 12"/>
+                                                    <label for="email-id-vertical">Details</label>
+                                                    <input type="text" id="details" className="form-control" defaultValue={inputs.details} name="details" onChange={handleChange} placeholder="Hsc 12"/>
                                                     </div>
                                                 </div>
                                                 

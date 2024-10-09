@@ -31,10 +31,7 @@ function Course() {
                         <thead>
                             <tr>
                                 <th scope="col">Course Name</th>
-                                <th scope="col">Batch ID</th>
-                                <th scope="col">Course Category</th>
-                                <th scope="col">duration</th>
-                                <th scope="col">Course Fee</th>
+                                <th scope="col">Details</th>
                                 <th scope="col">Action</th>
                             </tr>
                         </thead>
@@ -42,10 +39,7 @@ function Course() {
                                     {data && data.map((d, key) =>
                                         <tr key={d.id}>
                                             <td>{d.course_name}</td>
-                                            <td>{d.batch_id}</td>
-                                            <td>{d.course_category}</td>
-                                            <td>{d.duration}</td>
-                                            <td>{d.fees}</td>
+                                            <td>{d.details}</td>
                                             <td>
                                                 <Link to={`/course/edit/${d.id}`} className='btn btn-info' >Edit</Link>
                                                 <button type='button' onClick={() => deleteData(d.id)} className='btn btn-danger'>Delete</button>
