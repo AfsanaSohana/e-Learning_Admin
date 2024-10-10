@@ -44,6 +44,22 @@ function Sidebar() {
                                     
                                 </div>
                             </div>
+                            <div className="nav-item dropdown">
+                                <a href="#" className="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i className="fa fa-laptop me-2"></i>Classes Details</a>
+                                <div className="dropdown-menu bg-transparent border-0">
+                                    <Link to='/classes/add'className="dropdown-item"> Add New </Link>
+                                    <Link to='/classes'className="dropdown-item"> list </Link>
+                                    
+                                </div>
+                            </div>
+                            <div className="nav-item dropdown">
+                                <a href="#" className="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i className="fa fa-laptop me-2"></i>Batch Details</a>
+                                <div className="dropdown-menu bg-transparent border-0">
+                                    <Link to='/batch/add'className="dropdown-item"> Add New </Link>
+                                    <Link to='/batch'className="dropdown-item"> list </Link>
+                                    
+                                </div>
+                            </div>
                         </div>
                     </nav>
                 </div>
