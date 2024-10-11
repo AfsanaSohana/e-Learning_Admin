@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import {useParams} from "react-router-dom";
 
 function BatchAdd() {
-      const [inputs, setInputs] = useState({id:'',class_name:''});
+      const [inputs, setInputs] = useState({id:'',batch_name:'',batch_type:'',duration:'',instructor_id:'',course_id:''});
     const navigate=useNavigate();
     const {id} = useParams();
     
@@ -80,10 +80,34 @@ function BatchAdd() {
                                     <form className="form form-vertical" onSubmit={handleSubmit}>
                                         <div className="form-body">
                                             <div className="row">
+                                            <div className="col-12">
+                                                    <div className="form-group">
+                                                    <label for="batch_name">Batch Name</label>
+                                                    <input type="text" id="batch_name" className="form-control" defaultValue={inputs.batch_name} name="batch_name" onChange={handleChange} placeholder="Enter batch name"/>
+                                                    </div>
+                                                </div>
                                                 <div className="col-12">
                                                     <div className="form-group">
-                                                    <label for="class_name"> batch Name</label>
-                                                    <input type="text" id="class_name" className="form-control" defaultValue={inputs.class_name} name="class_name" onChange={handleChange} placeholder="Enter class name"/>
+                                                    <label for="batch_type"> Batch Type</label>
+                                                    <input type="text" id="batch_type" className="form-control" defaultValue={inputs.batch_type} name="batch_type" onChange={handleChange} placeholder="regular batch "/>
+                                                    </div>
+                                                </div>
+                                                <div className="col-12">
+                                                    <div className="form-group">
+                                                    <label for="duration"> Duration</label>
+                                                    <input type="text" id="duration" className="form-control" defaultValue={inputs.duration} name="duration" onChange={handleChange} placeholder="Enter class name"/>
+                                                    </div>
+                                                </div>
+                                                <div className="col-12">
+                                                    <div className="form-group">
+                                                    <label for="instructor">Instructor </label>
+                                                    <input type="text" id="instructor_id" className="form-control" defaultValue={inputs.instructor_id} name="instructor_id" onChange={handleChange} placeholder="Enter instructor name"/>
+                                                    </div>
+                                                </div>
+                                                <div className="col-12">
+                                                    <div className="form-group">
+                                                    <label for="course"> course </label>
+                                                    <input type="text" id="class_name" className="form-control" defaultValue={inputs.course_id} name="course_id" onChange={handleChange} placeholder="Enter class name"/>
                                                     </div>
                                                 </div>
                                                 

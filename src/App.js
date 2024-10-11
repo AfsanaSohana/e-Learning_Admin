@@ -7,6 +7,8 @@ import Course from './pages/Course';
 import CourseAdd from './pages/Course/CourseAdd';
 import Classes from './pages/Classes';
 import ClassesAdd from './pages/Classes/ClassesAdd';
+import Batch from './pages/Batch';
+import BatchAdd from './pages/Batch/BatchAdd';
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
@@ -21,8 +23,12 @@ function App() {
           <Route path="/course" element={<Course />} />
           <Route path="/course/add" element={<CourseAdd />} />
           <Route path="/course/edit/:id" element={<CourseAdd />} />
+          <Route path="/classes" element={<Classes />} />
           <Route path="/classes/add" element={<ClassesAdd />} />
           <Route path="/classes/edit/:id" element={<ClassesAdd />} />
+          <Route path="/batch" element={<Batch />} />
+          <Route path="/batch/add" element={<BatchAdd />} />
+          <Route path="/batch/edit/:id" element={<BatchAdd />} />
           <Route path={"/"} element={
             <Protected isSignedIn={isSignedIn} >
               <Dashboard />
@@ -44,7 +50,7 @@ function App() {
             <CourseAdd />
           </Protected>
         } />
-        {/* class */}
+        {/* class
           <Route path={"/classes"} element={
           <Protected isSignedIn={isSignedIn} >
             <Classes />
@@ -59,23 +65,23 @@ function App() {
           <Protected isSignedIn={isSignedIn} >
             <ClassesAdd />
           </Protected>
-        } />
-        {/* batch */}
+        } /> */}
+        {/* batch
           <Route path={"/batch"} element={
           <Protected isSignedIn={isSignedIn} >
-            <Classes />
+            <Batch />
           </Protected>
         } />
         <Route path={"/batch/add"} element={
           <Protected isSignedIn={isSignedIn} >
-            <ClassesAdd />
+            <BatchAdd />
           </Protected>
         } />
         <Route path={"/batch/edit/:id"} element={
           <Protected isSignedIn={isSignedIn} >
-            <ClassesAdd />
+            <BatchAdd />
           </Protected>
-        } />
+        } /> */}
       
         <Route path="/" element={<Dashboard />} />
        

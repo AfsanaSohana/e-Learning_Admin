@@ -81,10 +81,11 @@ function ClassesAdd() {
                                             <div className="row">
                                                 <div className="col-12">
                                                     <div className="form-group">
-                                                    <label for="class_name"> Classes Name</label>
+                                                    <label for="class_name"> Class Name</label>
                                                     <input type="text" id="class_name" className="form-control" defaultValue={inputs.class_name} name="class_name" onChange={handleChange} placeholder="Enter class name"/>
                                                     </div>
                                                 </div>
+                                               
                                                 
                                                 
                                                 <div className="col-12 d-flex justify-content-end">
