@@ -9,8 +9,11 @@ import Classes from './pages/Classes';
 import ClassesAdd from './pages/Classes/ClassesAdd';
 import Batch from './pages/Batch';
 import BatchAdd from './pages/Batch/BatchAdd';
+import Exam from './pages/Exam';
+import ExamAdd from './pages/Exam/ExamAdd';
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+
 
 function App() {
   const isSignedIn = localStorage.getItem("access_token") || false;
@@ -29,6 +32,9 @@ function App() {
           <Route path="/batch" element={<Batch />} />
           <Route path="/batch/add" element={<BatchAdd />} />
           <Route path="/batch/edit/:id" element={<BatchAdd />} />
+          <Route path="/exam" element={<Exam />} />
+          <Route path="/exam/add" element={<ExamAdd />} />
+          <Route path="/exam/edit/:id" element={<ExamAdd />} />
           <Route path={"/"} element={
             <Protected isSignedIn={isSignedIn} >
               <Dashboard />
