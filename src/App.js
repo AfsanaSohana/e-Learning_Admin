@@ -11,6 +11,8 @@ import Batch from './pages/Batch';
 import BatchAdd from './pages/Batch/BatchAdd';
 import Exam from './pages/Exam';
 import ExamAdd from './pages/Exam/ExamAdd';
+import Instructor from './pages/Instructor';
+import InstructorAdd from './pages/Instructor/instructorAdd';
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
@@ -35,6 +37,9 @@ function App() {
           <Route path="/exam" element={<Exam />} />
           <Route path="/exam/add" element={<ExamAdd />} />
           <Route path="/exam/edit/:id" element={<ExamAdd />} />
+          <Route path="/instructor" element={<Instructor />} />
+          <Route path="/instructor/add" element={<InstructorAdd />} />
+          <Route path="/instructor/edit/:id" element={<InstructorAdd />} />
           <Route path={"/"} element={
             <Protected isSignedIn={isSignedIn} >
               <Dashboard />
