@@ -13,6 +13,9 @@ import Exam from './pages/Exam';
 import ExamAdd from './pages/Exam/ExamAdd';
 import Instructor from './pages/Instructor';
 import InstructorAdd from './pages/Instructor/instructorAdd';
+import Student from './pages/Student';
+import StudentAdd from './pages/Student/StudentAdd';
+
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
@@ -40,6 +43,9 @@ function App() {
           <Route path="/instructor" element={<Instructor />} />
           <Route path="/instructor/add" element={<InstructorAdd />} />
           <Route path="/instructor/edit/:id" element={<InstructorAdd />} />
+          <Route path="/student" element={<Student />} />
+          <Route path="/student/add" element={<StudentAdd />} />
+          <Route path="/student/edit/:id" element={<StudentAdd />} />
           <Route path={"/"} element={
             <Protected isSignedIn={isSignedIn} >
               <Dashboard />
