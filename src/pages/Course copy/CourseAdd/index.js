@@ -4,13 +4,13 @@ import AdminLayout from '../../../layout/adminLayout';
 import { useNavigate } from 'react-router-dom';
 import {useParams} from "react-router-dom";
 
-function StudentAdd() {
-      const [inputs, setInputs] = useState({id:'',student_name:'',email:'',contact_number:'',photo:''});
+function RoutineAdd() {
+      const [inputs, setInputs] = useState({id:'',batch_id:'',day_name:'',start_time:'',end_time:'',note:''});
     const navigate=useNavigate();
     const {id} = useParams();
     
     function getDatas(){
-        axios.get(`${process.env.REACT_APP_API_URL}/student/${id}`).then(function(response) {
+        axios.get(`${process.env.REACT_APP_API_URL}/routine/${id}`).then(function(response) {
             setInputs(response.data.data);
         });
     }
@@ -34,9 +34,9 @@ function StudentAdd() {
         try{
             let apiurl='';
             if(inputs.id!=''){
-                apiurl=`/student/edit/${inputs.id}`;
+                apiurl=`/routine/edit/${inputs.id}`;
             }else{
-                apiurl=`/student/create`;
+                apiurl=`/routine/create`;
             }
             
             let response= await axios({
@@ -46,7 +46,7 @@ function StudentAdd() {
                 data: inputs
             });
             console.log(response)
-            navigate('/student')
+            navigate('/routine')
         } 
         catch(e){
             console.log(e);
@@ -58,7 +58,7 @@ function StudentAdd() {
             <div className="page-title">
                 <div className="row">
                     <div className="col-12 col-md-6 order-md-1 order-last">
-                        <h3>Add New Student</h3>
+                        <h3>Add New Routine</h3>
                     </div>
                     <div className="col-12 col-md-6 order-md-2 order-first">
                         <nav aria-label="breadcrumb" className='breadcrumb-header'>
@@ -81,26 +81,32 @@ function StudentAdd() {
                                             <div className="row">
                                                 <div className="col-12">
                                                     <div className="form-group">
-                                                    <label for="first-name-vertical"> Student Name</label>
-                                                    <input type="text" id="student_name" className="form-control" defaultValue={inputs.student_name} name="student_name" onChange={handleChange} placeholder="Enter student name"/>
+                                                    <label for="first-name-vertical">Batch ID</label>
+                                                    <input type="text" id="batch_id" className="form-control" defaultValue={inputs.batch_id} name="batch_id" onChange={handleChange} placeholder=""/>
                                                     </div>
                                                 </div>
                                                 <div className="col-12">
                                                     <div className="form-group">
-                                                    <label for="email-id-vertical">Email</label>
-                                                    <input type="text" id="email" className="form-control" defaultValue={inputs.email} name="email" onChange={handleChange} placeholder="sohana@email.com"/>
+                                                    <label for="email-id-vertical">Day name</label>
+                                                    <input type="text" id="day_name" className="form-control" defaultValue={inputs.day_name} name="day_name" onChange={handleChange} placeholder="sunday"/>
                                                     </div>
                                                 </div>
                                                 <div className="col-12">
                                                     <div className="form-group">
-                                                    <label for="email-id-vertical">Contact Number</label>
-                                                    <input type="text" id="contact_number" className="form-control" defaultValue={inputs.contact_number} name="contact_number" onChange={handleChange} placeholder=""/>
+                                                    <label for="email-id-vertical">start date</label>
+                                                    <input type="text" id="start_time" className="form-control" defaultValue={inputs.start_time} name="start_time" onChange={handleChange} placeholder="sunday - 1.00 pm"/>
                                                     </div>
                                                 </div>
                                                 <div className="col-12">
                                                     <div className="form-group">
-                                                    <label for="email-id-vertical">photo</label>
-                                                    <input type="file" id="photo" className="form-control" accept="image/*" defaultValue={inputs.photo} name="photo" onChange={handleChange} placeholder="sohana@email.com"/>
+                                                    <label for="email-id-vertical">End Date</label>
+                                                    <input type="text" id="end_time" className="form-control" defaultValue={inputs.end_time} name="end_time" onChange={handleChange} placeholder="sunday - 1.00 pm"/>
+                                                    </div>
+                                                </div>
+                                                <div className="col-12">
+                                                    <div className="form-group">
+                                                    <label for="email-id-vertical">Note</label>
+                                                    <input type="file" id="note" className="form-control" defaultValue={inputs.note} name="note" onChange={handleChange} placeholder=""/>
                                                     </div>
                                                 </div>
                                                 
@@ -122,4 +128,4 @@ function StudentAdd() {
   )
 }
 
-export default StudentAdd
+export default RoutineAdd

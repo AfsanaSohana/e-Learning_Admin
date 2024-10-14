@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import {useParams} from "react-router-dom";
 
 function InstructorAdd() {
-      const [inputs, setInputs] = useState({id:'',instructor_name:'',designation:'',contact_number:'',contact_number:'',email:'',fb_id:'',insta_id:'',twt_id:''});
+      const [inputs, setInputs] = useState({id:'',instructor_name:'',designation:'',contact_number:'',email:'',fb_id:'',insta_id:'',twt_id:''});
     const navigate=useNavigate();
     const {id} = useParams();
     
@@ -94,31 +94,31 @@ function InstructorAdd() {
                                                 <div className="col-12">
                                                     <div className="form-group">
                                                     <label for="email-id-vertical">Contact Number</label>
-                                                    <input type="text" id="contact_number" className="form-control" defaultValue={inputs.contact_number} name="contact_number"/>
+                                                    <input type="text" id="contact_number" className="form-control" defaultValue={inputs.contact_number} onChange={handleChange} name="contact_number"/>
                                                     </div>
                                                 </div>
                                                 <div className="col-12">
                                                     <div className="form-group">
                                                     <label for="email-id-vertical">Email</label>
-                                                    <input type="text" id="email" className="form-control" defaultValue={inputs.email} name="email" placeholder="inatructor@gmail.com"/>
+                                                    <input type="text" id="email" className="form-control" defaultValue={inputs.email} name="email" onChange={handleChange} placeholder="inatructor@gmail.com"/>
                                                     </div>
                                                 </div>
                                                 <div className="col-12">
                                                     <div className="form-group">
                                                     <label for="email-id-vertical">Facebook</label>
-                                                    <input type="text" id="fb_id" className="form-control" defaultValue={inputs.fb_id} name="fb_id" placeholder="inatructor123"/>
+                                                    <input type="text" id="fb_id" className="form-control" defaultValue={inputs.fb_id} name="fb_id" onChange={handleChange} placeholder="inatructor123"/>
                                                     </div>
                                                 </div>
                                                 <div className="col-12">
                                                     <div className="form-group">
                                                     <label for="email-id-vertical">Instagram</label>
-                                                    <input type="text" id="insta_id" className="form-control" defaultValue={inputs.insta_id} name="insta_id" placeholder="inatructor123"/>
+                                                    <input type="text" id="insta_id" className="form-control" defaultValue={inputs.insta_id} name="insta_id" onChange={handleChange} placeholder="inatructor123"/>
                                                     </div>
                                                 </div>
                                                 <div className="col-12">
                                                     <div className="form-group">
                                                     <label for="email-id-vertical">Twitter</label>
-                                                    <input type="text" id="twt_id" className="form-control" defaultValue={inputs.twt_id} name="twt_id" placeholder="inatructor123"/>
+                                                    <input type="text" id="twt_id" className="form-control" defaultValue={inputs.twt_id} name="twt_id" onChange={handleChange} placeholder="inatructor123"/>
                                                     </div>
                                                 </div>
                                                 
