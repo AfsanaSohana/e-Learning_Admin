@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import {useParams} from "react-router-dom";
 
 function RoutineAdd() {
-      const [inputs, setInputs] = useState({id:'',batch_id:'',day_name:'',start_time:'',end_time:'',note:''});
+      const [inputs, setInputs] = useState({id:'',batch_id:'',day_name:'', date:'',start_time:'',end_time:'',note:''});
     const navigate=useNavigate();
     const {id} = useParams();
     
@@ -93,13 +93,19 @@ function RoutineAdd() {
                                                 </div>
                                                 <div className="col-12">
                                                     <div className="form-group">
-                                                    <label for="email-id-vertical">start date</label>
+                                                    <label for="email-id-vertical">Date</label>
+                                                    <input type="text" id="date" className="form-control" defaultValue={inputs.date} name="date" onChange={handleChange} placeholder="00-01-2024"/>
+                                                    </div>
+                                                </div>
+                                                <div className="col-12">
+                                                    <div className="form-group">
+                                                    <label for="email-id-vertical">Start Time</label>
                                                     <input type="text" id="start_time" className="form-control" defaultValue={inputs.start_time} name="start_time" onChange={handleChange} placeholder="sunday - 1.00 pm"/>
                                                     </div>
                                                 </div>
                                                 <div className="col-12">
                                                     <div className="form-group">
-                                                    <label for="email-id-vertical">End Date</label>
+                                                    <label for="email-id-vertical">End Time</label>
                                                     <input type="text" id="end_time" className="form-control" defaultValue={inputs.end_time} name="end_time" onChange={handleChange} placeholder="sunday - 1.00 pm"/>
                                                     </div>
                                                 </div>

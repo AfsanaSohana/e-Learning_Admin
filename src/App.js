@@ -46,9 +46,10 @@ function App() {
           <Route path="/student" element={<Student />} />
           <Route path="/student/add" element={<StudentAdd />} />
           <Route path="/student/edit/:id" element={<StudentAdd />} />
-          {/* <Route path="/routine" element={<Routine />} />
+          <Route path="/routine" element={<Routine />} />
           <Route path="/routine/add" element={<RoutineAdd />} />
-          <Route path="/routine/edit/:id" element={<RoutineAdd />} /> */}
+          <Route path="/routine/edit/:id" element={<RoutineAdd />} />
+          
           <Route path={"/"} element={
             <Protected isSignedIn={isSignedIn} >
               <Dashboard />

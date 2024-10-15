@@ -32,6 +32,7 @@ function Routine() {
                             <tr>
                                 <th scope="col">Batch ID</th>
                                 <th scope="col">Day</th>
+                                <th scope="col">Date</th>
                                 <th scope="col">Start</th>
                                 <th scope="col">End</th>
                                 <th scope="col">Note</th>
@@ -43,6 +44,7 @@ function Routine() {
                                         <tr key={d.id}>
                                             <td>{d.batch_id}</td>
                                             <td>{d.day_name}</td>
+                                            <td>{d.date}</td>
                                             <td>{d.start_time}</td>
                                             <td>{d.end_time}</td>
                                             <td>{d.note}</td>
