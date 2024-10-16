@@ -6,19 +6,32 @@ import {useParams} from "react-router-dom";
 
 function BatchAdd() {
       const [inputs, setInputs] = useState({id:'',batch_name:'',batch_type:'',duration:'',instructor_id:'',course_id:''});
-    const navigate=useNavigate();
-    const {id} = useParams();
+        const [instructor, setInstructor] = useState([]);
+        const [course, setCourse] = useState([]);
+        const navigate=useNavigate();
+        const {id} = useParams();
     
     function getDatas(){
         axios.get(`${process.env.REACT_APP_API_URL}/batch/${id}`).then(function(response) {
             setInputs(response.data.data);
         });
     }
+     const getRelational = async (e) => {
+        axios.get(`${process.env.REACT_APP_API_URL}/instructor`).then(function(response) {
+            setInstructor(response.data.data);
+        });
+        axios.get(`${process.env.REACT_APP_API_URL}/course`).then(function(response) {
+            setCourse(response.data.data);
+         
+        });
+        
+    }
 
     useEffect(() => {
         if(id){
             getDatas();
         }
+         getRelational()
     }, []);
 
     const handleChange = (event) => {
@@ -80,7 +93,7 @@ function BatchAdd() {
                                     <form className="form form-vertical" onSubmit={handleSubmit}>
                                         <div className="form-body">
                                             <div className="row">
-                                            <div className="col-12">
+                                                <div className="col-12">
                                                     <div className="form-group">
                                                     <label for="batch_name">Batch Name</label>
                                                     <input type="text" id="batch_name" className="form-control" defaultValue={inputs.batch_name} name="batch_name" onChange={handleChange} placeholder="Enter batch name"/>
@@ -100,14 +113,28 @@ function BatchAdd() {
                                                 </div>
                                                 <div className="col-12">
                                                     <div className="form-group">
-                                                    <label for="instructor">Instructor </label>
-                                                    <input type="text" id="instructor_id" className="form-control" defaultValue={inputs.instructor_id} name="instructor_id" onChange={handleChange} placeholder="Enter instructor name"/>
+                                                        <label for="instructor">Instructor </label>
+                                                            {instructor.length > 0 &&
+                                                                <select  id="instructor_id" className="form-control" defaultValue={inputs.instructor_id} name="instructor_id" onChange={handleChange} >
+                                                                    <option value="">Select instructor</option>
+                                                                            {instructor.map((d, key) =>
+                                                                                <option value={d.id}>{d.instructor_name}</option>
+                                                                            )}
+                                                                </select>
+                                                            }
                                                     </div>
                                                 </div>
                                                 <div className="col-12">
                                                     <div className="form-group">
                                                     <label for="course"> course </label>
-                                                    <input type="text" id="class_name" className="form-control" defaultValue={inputs.course_id} name="course_id" onChange={handleChange} placeholder="Enter class name"/>
+                                                      {course.length > 0 &&
+                                                            <select type="text" id="course_id" className="form-control" defaultValue={inputs.course_id} name="course_id" onChange={handleChange} placeholder="Enter class name">
+                                                                <option value="">Select Course</option>
+                                                                    {course.map((d, key) =>
+                                                                        <option value={d.id}>{d.course_name}</option>
+                                                                    )}
+                                                            </select>
+                                                      }
                                                     </div>
                                                 </div>
                                                 

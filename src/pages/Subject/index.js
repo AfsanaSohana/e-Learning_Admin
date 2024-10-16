@@ -4,7 +4,7 @@ import AdminLayout from '../../layout/adminLayout';
 import { Link } from 'react-router-dom';
 
 
-function Exam() {
+function Subject() {
 
     const[data, setData]=useState([]);
     useEffect(() => {
@@ -12,12 +12,12 @@ function Exam() {
     }, []);
 
     function getDatas() {
-        axios.get(`${process.env.REACT_APP_API_URL}/exam`).then(function(response) {
+        axios.get(`${process.env.REACT_APP_API_URL}/subject`).then(function(response) {
             setData(response.data.data);
         });
     }
     const deleteData = (id) => {
-        axios.delete(`${process.env.REACT_APP_API_URL}/exam/${id}`).then(function(response){
+        axios.delete(`${process.env.REACT_APP_API_URL}/subject/${id}`).then(function(response){
             getDatas();
         });
     }
@@ -26,17 +26,13 @@ function Exam() {
         <div className="row g-4">
             <div className="col-sm-12">
                 <div className="bg-light rounded h-100 p-4">
-                    <h6 className="mb-4">Exam</h6>
+                    <h6 className="mb-4">Subject</h6>
                     <table className="table">
                         <thead>
                             <tr>
                                 <th scope="col">ID</th>
-                                <th scope="col">Exam Name</th>
-                                <th scope="col">Duration</th>
-                                <th scope="col">Start Date</th>
-                                <th scope="col">End Date</th>
-                                <th scope="col">Subject</th>
-                                <th scope="col">Batch</th>
+                                <th scope="col">Subject Name</th>
+                               
                                 <th scope="col">Action</th>
                             </tr>
                         </thead>
@@ -44,15 +40,10 @@ function Exam() {
                                     {data && data.map((d, key) =>
                                         <tr key={d.id}>
                                             <td>{d.id}</td>
-                                            <td>{d.exam_name}</td>
-                                            <td>{d.duration}</td>
-                                            <td>{d.start_time}</td>
-                                            <td>{d.end_time}</td>
-                                            <td>{d.subject?.subject_name}</td>
-                                            <td>{d.batch?.batch_name}</td>
-                                           
+                                            <td>{d.subject_name}</td>
+                                          
                                             <td>
-                                                <Link to={`/exam/edit/${d.id}`} className='btn btn-info' >Edit</Link>
+                                                <Link to={`/subject/edit/${d.id}`} className='btn btn-info' >Edit</Link>
                                                 <button type='button' onClick={() => deleteData(d.id)} className='btn btn-danger'>Delete</button>
                                             </td>
                                         </tr>
@@ -66,4 +57,4 @@ function Exam() {
   )
 }
 
-export default Exam
+export default Subject

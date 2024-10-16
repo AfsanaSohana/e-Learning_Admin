@@ -18,6 +18,8 @@ import StudentAdd from './pages/Student/StudentAdd';
 import Routine from './pages/Routine';
 import RoutineAdd from './pages/Routine/RoutineAdd';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Subject from './pages/Subject';
+import SubjectAdd from './pages/Subject/SubjectAdd';
 
 
 function App() {
@@ -49,6 +51,9 @@ function App() {
           <Route path="/routine" element={<Routine />} />
           <Route path="/routine/add" element={<RoutineAdd />} />
           <Route path="/routine/edit/:id" element={<RoutineAdd />} />
+          <Route path="/subject" element={<Subject />} />
+          <Route path="/subject/add" element={<SubjectAdd />} />
+          <Route path="/subject/edit/:id" element={<SubjectAdd />} />
           
           <Route path={"/"} element={
             <Protected isSignedIn={isSignedIn} >

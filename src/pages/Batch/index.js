@@ -46,8 +46,8 @@ function Batch() {
                                             <td>{d.batch_name}</td>
                                             <td>{d.batch_type}</td>
                                             <td>{d.duration}</td>
-                                            <td>{d.instructor_id}</td>
-                                            <td>{d.course_id}</td>
+                                            <td>{d.instructor?.instructor_name}</td>
+                                            <td>{d.course?.course_name}</td>
                                            
                                             <td>
                                                 <Link to={`/batch/edit/${d.id}`} className='btn btn-info' >Edit</Link>

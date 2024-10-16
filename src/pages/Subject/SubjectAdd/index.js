@@ -4,17 +4,16 @@ import AdminLayout from '../../../layout/adminLayout';
 import { useNavigate } from 'react-router-dom';
 import {useParams} from "react-router-dom";
 
-function RoutineAdd() {
-      const [inputs, setInputs] = useState({id:'',batch_id:'',day_name:'', rdate:'',start_time:'',end_time:'',note:''});
+function SubjectAdd() {
+      const [inputs, setInputs] = useState({id:'',subject_name:''});
     const navigate=useNavigate();
     const {id} = useParams();
     
     function getDatas(){
-        axios.get(`${process.env.REACT_APP_API_URL}/routine/${id}`).then(function(response) {
+        axios.get(`${process.env.REACT_APP_API_URL}/subject/${id}`).then(function(response) {
             setInputs(response.data.data);
         });
     }
-    
 
     useEffect(() => {
         if(id){
@@ -35,9 +34,9 @@ function RoutineAdd() {
         try{
             let apiurl='';
             if(inputs.id!=''){
-                apiurl=`/routine/edit/${inputs.id}`;
+                apiurl=`/subject/edit/${inputs.id}`;
             }else{
-                apiurl=`/routine/create`;
+                apiurl=`/subject/create`;
             }
             
             let response= await axios({
@@ -47,7 +46,7 @@ function RoutineAdd() {
                 data: inputs
             });
             console.log(response)
-            navigate('/routine')
+            navigate('/subject')
         } 
         catch(e){
             console.log(e);
@@ -59,7 +58,7 @@ function RoutineAdd() {
             <div className="page-title">
                 <div className="row">
                     <div className="col-12 col-md-6 order-md-1 order-last">
-                        <h3>Add New Routine</h3>
+                        <h3>Add New Subject</h3>
                     </div>
                     <div className="col-12 col-md-6 order-md-2 order-first">
                         <nav aria-label="breadcrumb" className='breadcrumb-header'>
@@ -82,40 +81,11 @@ function RoutineAdd() {
                                             <div className="row">
                                                 <div className="col-12">
                                                     <div className="form-group">
-                                                    <label for="first-name-vertical">Batch ID</label>
-                                                    <input type="text" id="batch_id" className="form-control" defaultValue={inputs.batch_id} name="batch_id" onChange={handleChange} placeholder=""/>
+                                                    <label for="first-name-vertical">Subject Name</label>
+                                                    <input type="text" id="subject_name" className="form-control" defaultValue={inputs.subject_name} name="subject_name" onChange={handleChange} placeholder="Enter subject name"/>
                                                     </div>
                                                 </div>
-                                                <div className="col-12">
-                                                    <div className="form-group">
-                                                    <label for="email-id-vertical">Day name</label>
-                                                    <input type="text" id="day_name" className="form-control" defaultValue={inputs.day_name} name="day_name" onChange={handleChange} placeholder="sunday"/>
-                                                    </div>
-                                                </div>
-                                                <div className="col-12">
-                                                    <div className="form-group">
-                                                    <label for="email-id-vertical">Date</label>
-                                                    <input type="date" id="rdate" className="form-control" defaultValue={inputs.rdate} name="rdate" onChange={handleChange} placeholder="00-01-2024"/>
-                                                    </div>
-                                                </div>
-                                                <div className="col-12">
-                                                    <div className="form-group">
-                                                    <label for="email-id-vertical">Start Time</label>
-                                                    <input type="time" id="start_time" className="form-control" defaultValue={inputs.start_time} name="start_time" onChange={handleChange} placeholder="sunday - 1.00 pm"/>
-                                                    </div>
-                                                </div>
-                                                <div className="col-12">
-                                                    <div className="form-group">
-                                                    <label for="email-id-vertical">End Time</label>
-                                                    <input type="time" id="end_time" className="form-control" defaultValue={inputs.end_time} name="end_time" onChange={handleChange} placeholder="sunday - 1.00 pm"/>
-                                                    </div>
-                                                </div>
-                                                <div className="col-12">
-                                                    <div className="form-group">
-                                                    <label for="email-id-vertical">Note</label>
-                                                    <input type="text" id="note" className="form-control" defaultValue={inputs.note} name="note" onChange={handleChange} placeholder=""/>
-                                                    </div>
-                                                </div>
+                                               
                                                 
                                                 <div className="col-12 d-flex justify-content-end">
                                                     <button type="submit" className="btn btn-primary mr-1 mb-1">Submit</button>
@@ -135,4 +105,4 @@ function RoutineAdd() {
   )
 }
 
-export default RoutineAdd
+export default SubjectAdd
