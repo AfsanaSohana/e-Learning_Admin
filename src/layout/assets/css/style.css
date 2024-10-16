@@ -1,9 +1,10 @@
 /********** Template CSS **********/
 :root {
     --primary: #EB1616;
-    --secondary: #191C24;
-    --light: #6C7293;
+    --secondary: #363c4e;
+    --light: #f1d0f1;
     --dark: #000000;
+    --white: hwb(180 100% 0%);
 }
 
 .back-to-top {
@@ -121,7 +122,7 @@
 /*** Navbar ***/
 .sidebar .navbar .navbar-nav .nav-link {
     padding: 7px 20px;
-    color: var(--light);
+    color: var(--white);
     font-weight: 500;
     border-left: 3px solid var(--secondary);
     border-radius: 0 30px 30px 0;
@@ -130,7 +131,7 @@
 
 .sidebar .navbar .navbar-nav .nav-link:hover,
 .sidebar .navbar .navbar-nav .nav-link.active {
-    color: var(--primary);
+    color: var(--light);
     background: var(--dark);
     border-color: var(--primary);
 }
@@ -168,7 +169,7 @@
 .sidebar .navbar .dropdown-item {
     padding-left: 25px;
     border-radius: 0 30px 30px 0;
-    color: var(--light);
+    color: var(--white);
 }
 
 .sidebar .navbar .dropdown-item:hover,
@@ -185,7 +186,7 @@
 
 .content .navbar .navbar-nav .nav-link:hover,
 .content .navbar .navbar-nav .nav-link.active {
-    color: var(--primary);
+    color: var(--white);
 }
 
 .content .navbar .sidebar-toggler,

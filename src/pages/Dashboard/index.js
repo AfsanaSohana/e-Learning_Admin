@@ -7,10 +7,10 @@ function Dashboard() {
                         <div className="row g-4">
                             <div className="col-sm-6 col-xl-3">
                                 <div className="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
-                                    <i className="fa fa-chart-line fa-3x text-primary"></i>
+                                    <i className="fa fa-chart-line fa-3x "></i>
                                     <div className="ms-3">
-                                        <p className="mb-2">Today Sale</p>
-                                        <h6 className="mb-0">$1234</h6>
+                                        <p className="mb-2 text-light">Today enrol student</p>
+                                        <h6 className="mb-0 text-light">234</h6>
                                     </div>
                                 </div>
                             </div>
@@ -18,8 +18,8 @@ function Dashboard() {
                                 <div className="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
                                     <i className="fa fa-chart-bar fa-3x text-primary"></i>
                                     <div className="ms-3">
-                                        <p className="mb-2">Total Sale</p>
-                                        <h6 className="mb-0">$1234</h6>
+                                        <p className="mb-2 text-light">Total Course purches</p>
+                                        <h6 className="mb-0 text-light">200 </h6>
                                     </div>
                                 </div>
                             </div>
@@ -27,8 +27,8 @@ function Dashboard() {
                                 <div className="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
                                     <i className="fa fa-chart-area fa-3x text-primary"></i>
                                     <div className="ms-3">
-                                        <p className="mb-2">Today Revenue</p>
-                                        <h6 className="mb-0">$1234</h6>
+                                        <p className="mb-2 text-light">Total sutdent(Offline)</p>
+                                        <h6 className="mb-0 text-light">1234</h6>
                                     </div>
                                 </div>
                             </div>
@@ -36,8 +36,8 @@ function Dashboard() {
                                 <div className="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
                                     <i className="fa fa-chart-pie fa-3x text-primary"></i>
                                     <div className="ms-3">
-                                        <p className="mb-2">Total Revenue</p>
-                                        <h6 className="mb-0">$1234</h6>
+                                        <p className="mb-2 text-light">Total sutdent(Online)</p>
+                                        <h6 className="mb-0 text-light">1234</h6>
                                     </div>
                                 </div>
                             </div>

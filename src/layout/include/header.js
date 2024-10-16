@@ -23,8 +23,8 @@ function Header() {
                                         <div className="d-flex align-items-center">
                                             <img className="rounded-circle" src="/assets/img/user.jpg" alt="" style={{width: "40px", height: "40px"}}/>
                                             <div className="ms-2">
-                                                <h6 className="fw-normal mb-0">Jhon send you a message</h6>
-                                                <small>15 minutes ago</small>
+                                                <h6 className="fw-normal mb-0 text-light">Jhon send you a message</h6>
+                                                <small className='text-light'>15 minutes ago</small>
                                             </div>
                                         </div>
                                     </a>
@@ -33,8 +33,8 @@ function Header() {
                                         <div className="d-flex align-items-center">
                                             <img className="rounded-circle" src="/assets/img/user.jpg" alt="" style={{width: "40px",height: "40px;"}}/>
                                             <div className="ms-2">
-                                                <h6 className="fw-normal mb-0">Jhon send you a message</h6>
-                                                <small>15 minutes ago</small>
+                                                <h6 className="fw-normal mb-0 text-light">Jhon send you a message</h6>
+                                                <small className='text-light'>15 minutes ago</small>
                                             </div>
                                         </div>
                                     </a>
@@ -43,13 +43,13 @@ function Header() {
                                         <div className="d-flex align-items-center">
                                             <img className="rounded-circle" src="/assets/img/user.jpg" alt="" style={{width: "40px", height: "40px"}}/>
                                             <div className="ms-2">
-                                                <h6 className="fw-normal mb-0">Jhon send you a message</h6>
-                                                <small>15 minutes ago</small>
+                                                <h6 className="fw-normal mb-0 text-light">Jhon send you a message</h6>
+                                                <small className='text-light'>15 minutes ago</small>
                                             </div>
                                         </div>
                                     </a>
                                     <hr className="dropdown-divider"/>
-                                    <a href="#" className="dropdown-item text-center">See all message</a>
+                                    <a href="#" className="dropdown-item text-center text-light">See all message</a>
                                 </div>
                             </div>
                             <div className="nav-item dropdown">
@@ -82,9 +82,9 @@ function Header() {
                                     <span className="d-none d-lg-inline-flex">John Doe</span>
                                 </a>
                                 <div className="dropdown-menu dropdown-menu-end bg-secondary border-0 rounded-0 rounded-bottom m-0">
-                                    <a href="#" className="dropdown-item">My Profile</a>
-                                    <a href="#" className="dropdown-item">Settings</a>
-                                    <a href="#" className="dropdown-item">Log Out</a>
+                                    <a href="#" className="dropdown-item text-light">My Profile</a>
+                                    <a href="#" className="dropdown-item text-light">Settings</a>
+                                    <a href="#" className="dropdown-item text-light">Log Out</a>
                                 </div>
                             </div>
                         </div>

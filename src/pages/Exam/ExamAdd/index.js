@@ -2,163 +2,158 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import AdminLayout from '../../../layout/adminLayout';
 import { useNavigate } from 'react-router-dom';
-import {useParams} from "react-router-dom";
+import { useParams } from 'react-router-dom';
 
 function ExamAdd() {
-      const [inputs, setInputs] = useState({id:'',exam_name:'',duration:'',start_time:'',end_time:'',subject_id:'',batch_id:''});
-        const [subject, setSubject] = useState([]);
-        const [batch, setBatch] = useState([]);
-    const navigate=useNavigate();
-    const {id} = useParams();
-    
-    function getDatas(){
-        axios.get(`${process.env.REACT_APP_API_URL}/exam/${id}`).then(function(response) {
-            setInputs(response.data.data);
-        });
-    }
-     const getRelational = async (e) => {
-        axios.get(`${process.env.REACT_APP_API_URL}/subject`).then(function(response) {
-            setSubject(response.data.data);
-        });
-   
-    
-        axios.get(`${process.env.REACT_APP_API_URL}/batch`).then(function(response) {
-            setBatch(response.data.data);
-        });
-    }
+    const [inputs, setInputs] = useState({ id: '', exam_name: '', duration: '', start_time: '', end_time: '', subject_id: '', batch_id: '' });
+    const [subject, setSubject] = useState([]);
+    const [batch, setBatch] = useState([]);
+    const navigate = useNavigate();
+    const { id } = useParams();
+
+    // Fetch exam data if `id` is present
+    const getDatas = () => {
+        if (id) {
+            axios.get(`${process.env.REACT_APP_API_URL}/exam/${id}`).then((response) => {
+                setInputs(response.data.data);
+            }).catch((error) => {
+                console.error("Error fetching exam data", error);
+            });
+        }
+    };
+
+    // Fetch relational data (subject and batch)
+    const getRelational = async () => {
+        try {
+            const subjectResponse = await axios.get(`${process.env.REACT_APP_API_URL}/subject`);
+            const batchResponse = await axios.get(`${process.env.REACT_APP_API_URL}/batch`);
+            setSubject(subjectResponse.data.data);
+            setBatch(batchResponse.data.data);
+        } catch (error) {
+            console.error("Error fetching relational data", error);
+        }
+    };
 
     useEffect(() => {
-        if(id){
-            getDatas();
-             getRelational()
-        }
-    }, []);
+        getDatas();
+        getRelational();
+    }, [id]); // Re-run when id changes
 
     const handleChange = (event) => {
-        const name = event.target.name;
-        const value = event.target.value;
-        setInputs(values => ({...values, [name]: value}));
-    }
+        const { name, value } = event.target;
+        setInputs(values => ({ ...values, [name]: value }));
+    };
 
-    const handleSubmit = async(e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(inputs)
+        console.log(inputs);
         
-        try{
-            let apiurl='';
-            if(inputs.id!=''){
-                apiurl=`/exam/edit/${inputs.id}`;
-            }else{
-                apiurl=`/exam/create`;
-            }
-            
-            let response= await axios({
-                method: 'post',
-                responsiveTYpe: 'json',
-                url: `${process.env.REACT_APP_API_URL}${apiurl}`,
-                data: inputs
-            });
-            console.log(response)
-            navigate('/exam')
-        } 
-        catch(e){
-            console.log(e);
+        try {
+            const apiurl = inputs.id ? `/exam/edit/${inputs.id}` : `/exam/create`;
+            const response = await axios.post(`${process.env.REACT_APP_API_URL}${apiurl}`, inputs);
+            console.log(response);
+            navigate('/exam');
+        } catch (error) {
+            console.error("Error submitting the form", error);
         }
-    }
-  return (
-     <AdminLayout>
-        <div className="main-content container-fluid">
-            <div className="page-title">
-                <div className="row">
-                    <div className="col-12 col-md-6 order-md-1 order-last">
-                        <h3>Add New Exam</h3>
-                    </div>
-                    <div className="col-12 col-md-6 order-md-2 order-first">
-                        <nav aria-label="breadcrumb" className='breadcrumb-header'>
-                            <ol className="breadcrumb">
-                                <li className="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-                                <li className="breadcrumb-item active" aria-current="page">Add New</li>
-                            </ol>
-                        </nav>
-                    </div>
+    };
+
+    return (
+        <AdminLayout>
+            <div className="main-content container-fluid">
+                <div className="page-title">
+                    <h3>{id ? "Edit Exam" : "Add New Exam"}</h3>
                 </div>
-            </div>
-            <section id="basic-vertical-layouts">
-                <div className="row match-height">
-                    <div className="col-12">
-                        <div className="card">
-                            <div className="card-content">
-                                <div className="card-body">
-                                    <form className="form form-vertical" onSubmit={handleSubmit}>
-                                        <div className="form-body">
-                                            <div className="row">
-                                                <div className="col-12">
-                                                    <div className="form-group">
-                                                    <label for="first-name-vertical"> Exam Name</label>
-                                                    <input type="text" id="exam_name" className="form-control" defaultValue={inputs.exam_name} name="exam_name" onChange={handleChange} placeholder="Enter exam_name"/>
-                                                    </div>
-                                                </div>
-                                                <div className="col-12">
-                                                    <div className="form-group">
-                                                    <label for="first-name-vertical">Duration</label>
-                                                    <input type="text" id="duration" className="form-control" defaultValue={inputs.duration} name="duration" onChange={handleChange} placeholder="Enter exam_name"/>
-                                                    </div>
-                                                </div>
-                                                <div className="col-12">
-                                                    <div className="form-group">
-                                                    <label for="email-id-vertical">Start Date</label>
-                                                    <input type="text" id="start_time" className="form-control" defaultValue={inputs.start_time} name="start_time" onChange={handleChange} placeholder=""/>
-                                                    </div>
-                                                </div>
-                                                <div className="col-12">
-                                                    <div className="form-group">
-                                                    <label for="email-id-vertical">End Date</label>
-                                                    <input type="text" id="end_time" className="form-control" defaultValue={inputs.end_time} name="end_time" onChange={handleChange} placeholder=""/>
-                                                    </div>
-                                                </div>
-                                                <div className="col-12">
-                                                    <div className="form-group">
-                                                    <label for="email-id-vertical">subject</label>
-                                                   {subject.length > 0 &&
-                                                            <select type="text" id="subject_id" className="form-control" defaultValue={inputs.subject_id} name="subject_id" onChange={handleChange} placeholder="Enter subject name">
-                                                                <option value="">Select Subject</option>
-                                                                    {subject.map((d, key) =>
-                                                                        <option value={d.id}>{d.subject_name}</option>
-                                                                    )}
-                                                            </select>
-                                                      }
-                                                    </div>
-                                                </div>
-                                                <div className="col-12">
-                                                    <div className="form-group">
-                                                    <label for="email-id-vertical">Batch</label>
-                                                    {batch.length > 0 &&
-                                                            <select type="text" id="batch_id" className="form-control" defaultValue={inputs.batch_id} name="batch_id" onChange={handleChange} placeholder="Enter batch name">
-                                                                <option value="">Select Batch</option>
-                                                                    {batch.map((d, key) =>              
-                                                                        <option value={d.id}>{d.batch_name}</option>
-                                                                    )}
-                                                            </select>
-                                                      }
-                                                    </div>                                        
-                                                </div>
-                                                
-                                                <div className="col-12 d-flex justify-content-end">
-                                                    <button type="submit" className="btn btn-primary mr-1 mb-1">Submit</button>
-                                                    <button type="reset" className="btn btn-light-secondary mr-1 mb-1">Reset</button>
+                <section id="basic-vertical-layouts">
+                    <div className="card">
+                        <div className="card-body">
+                            {/* Render the form only if inputs are loaded */}
+                            {inputs ? (
+                                <form className="form form-vertical" onSubmit={handleSubmit}>
+                                    <div className="form-body">
+                                        <div className="row">
+                                            <div className="col-12">
+                                                <div className="form-group">
+                                                    <label htmlFor="exam_name">Exam Name</label>
+                                                    <input type="text" id="exam_name" className="form-control"
+                                                        value={inputs.exam_name} name="exam_name" onChange={handleChange} placeholder="Enter exam name" />
                                                 </div>
                                             </div>
+
+                                            <div className="col-12">
+                                                <div className="form-group">
+                                                    <label htmlFor="duration">Duration</label>
+                                                    <input type="time" id="duration" className="form-control"
+                                                        value={inputs.duration} name="duration" onChange={handleChange} />
+                                                </div>
+                                            </div>
+
+                                            <div className="col-12">
+                                                <div className="form-group">
+                                                    <label htmlFor="start_time">Start Date</label>
+                                                    <input type="date" id="start_time" className="form-control"
+                                                        value={inputs.start_time} name="start_time" onChange={handleChange} />
+                                                </div>
+                                            </div>
+
+                                            <div className="col-12">
+                                                <div className="form-group">
+                                                    <label htmlFor="end_time">End Date</label>
+                                                    <input type="date" id="end_time" className="form-control"
+                                                        value={inputs.end_time} name="end_time" onChange={handleChange} />
+                                                </div>
+                                            </div>
+
+                                            <div className="col-12">
+                                                <div className="form-group">
+                                                    <label htmlFor="subject_id">Subject</label>
+                                                    {subject.length > 0 ? (
+                                                        <select id="subject_id" className="form-control"
+                                                            value={inputs.subject_id} name="subject_id" onChange={handleChange}>
+                                                            <option value="">Select Subject</option>
+                                                            {subject.map((s) => (
+                                                                <option key={s.id} value={s.id}>{s.subject_name}</option>
+                                                            ))}
+                                                        </select>
+                                                    ) : (
+                                                        <p>Loading subjects...</p>
+                                                    )}
+                                                </div>
+                                            </div>
+
+                                            <div className="col-12">
+                                                <div className="form-group">
+                                                    <label htmlFor="batch_id">Batch</label>
+                                                    {batch.length > 0 ? (
+                                                        <select id="batch_id" className="form-control"
+                                                            value={inputs.batch_id} name="batch_id" onChange={handleChange}>
+                                                            <option value="">Select Batch</option>
+                                                            {batch.map((b) => (
+                                                                <option key={b.id} value={b.id}>{b.batch_name}</option>
+                                                            ))}
+                                                        </select>
+                                                    ) : (
+                                                        <p>Loading batches...</p>
+                                                    )}
+                                                </div>
+                                            </div>
+
+                                            <div className="col-12 d-flex justify-content-end">
+                                                <button type="submit" className="btn btn-primary mr-1 mb-1">Submit</button>
+                                                <button type="reset" className="btn btn-light-secondary mr-1 mb-1">Reset</button>
+                                            </div>
                                         </div>
-                                    </form>
-                                </div>
-                            </div>
+                                    </div>
+                                </form>
+                            ) : (
+                                <p>Loading...</p>
+                            )}
                         </div>
                     </div>
-                </div>
-            </section>
-        </div>
-    </AdminLayout>    
-  )
+                </section>
+            </div>
+        </AdminLayout>
+    );
 }
 
-export default ExamAdd
+export default ExamAdd;
