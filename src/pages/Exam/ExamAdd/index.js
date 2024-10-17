@@ -83,7 +83,7 @@ function ExamAdd() {
                                             <div className="col-12">
                                                 <div className="form-group">
                                                     <label htmlFor="duration">Duration</label>
-                                                    <input type="time" id="duration" className="form-control"
+                                                    <input type="text" id="duration" className="form-control"
                                                         value={inputs.duration} name="duration" onChange={handleChange} />
                                                 </div>
                                             </div>

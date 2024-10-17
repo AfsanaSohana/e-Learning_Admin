@@ -48,8 +48,8 @@ function Exam() {
                                             <td>{d.duration}</td>
                                             <td>{d.start_time}</td>
                                             <td>{d.end_time}</td>
-                                            {/* <td>{d.subject?.subject_name}</td>
-                                            <td>{d.batch?.batch_name}</td> */}
+                                            <td>{d.subject?.subject_name}</td>
+                                            <td>{d.batch?.batch_name}</td>
                                            
                                            
                                             <td>
