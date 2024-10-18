@@ -31,11 +31,10 @@ function Syllabus() {
                         <thead>
                             <tr>
                                 <th scope="col">ID</th>
-                                <th scope="col">Syllabus Name</th>
-                                <th scope="col">Syllabus Type</th>
-                                <th scope="col">Durstion</th>
-                                <th scope="col">Instructor </th>
-                                <th scope="col">Course </th>
+                                <th scope="col">Course Name</th>
+                                <th scope="col">Subject Name</th>
+                                <th scope="col">Description</th>
+                                <th scope="col">Document </th>
                                 <th scope="col">Action</th>
                             </tr>
                         </thead>
@@ -43,12 +42,10 @@ function Syllabus() {
                                     {data && data.map((d, key) =>
                                         <tr key={d.id}>
                                             <td>{d.id}</td>
-                                            <td>{d.batch_name}</td>
-                                            <td>{d.batch_type}</td>
-                                            <td>{d.duration}</td>
-                                            <td>{d.instructor?.instructor_name}</td>
                                             <td>{d.course?.course_name}</td>
-                                           
+                                            <td>{d.subject?.subject_name}</td>
+                                            <td>{d.title}</td>
+                                            <td>{d.document}</td> 
                                             <td>
                                                 <Link to={`/syllabus/edit/${d.id}`} className='btn btn-info' >Edit</Link>
                                                 <button type='button' onClick={() => deleteData(d.id)} className='btn btn-danger'>Delete</button>
