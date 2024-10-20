@@ -32,11 +32,13 @@ function Exam() {
                             <tr>
                             
                                         <th scope="col">Exam Name</th>
-                                        <th scope="col">Duration</th>
-                                        <th scope="col">Start Date</th>
-                                        <th scope="col">End Date</th>
-                                        <th scope="col">Subject</th>
+                                          <th scope="col">Subject</th>
                                         <th scope="col">Batch</th>
+                                        <th scope="col">Duration</th>
+                                        <th scope="col">Start Time</th>
+                                        <th scope="col">End Time</th>
+                                        <th scope="col">Date</th>
+                                      
                                         <th scope="col">Action</th>
 
                             </tr>
@@ -45,11 +47,13 @@ function Exam() {
                                     {data && data.map((d, key) =>
                                         <tr key={d.id}>
                                             <td>{d.exam_name}</td>
+                                            <td>{d.subject?.subject_name}</td>
+                                            <td>{d.batch?.batch_name}</td>
                                             <td>{d.duration}</td>
                                             <td>{d.start_time}</td>
                                             <td>{d.end_time}</td>
-                                            <td>{d.subject?.subject_name}</td>
-                                            <td>{d.batch?.batch_name}</td>
+                                            <td>{d.date}</td>
+                                          
                                            
                                            
                                             <td>

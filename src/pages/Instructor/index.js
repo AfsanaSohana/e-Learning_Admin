@@ -31,7 +31,13 @@ function Instructor() {
                         <thead>
                             <tr>
                                 <th scope="col">Instructor Name</th>
-                                <th scope="col">Details</th>
+                                <th scope="col">Designation</th>
+                                <th scope="col">Contact number</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Fb ID</th>
+                                <th scope="col">Instagram ID</th>
+                                <th scope="col">Twitter ID</th>
+                                <th scope="col">Photo</th>
                                 <th scope="col">Action</th>
                             </tr>
                         </thead>
@@ -45,6 +51,7 @@ function Instructor() {
                                             <td>{d.fb_id}</td>
                                             <td>{d.insta_id}</td>
                                             <td>{d.twt_id}</td>
+                                            <td>{d.photo}</td>
                                             <td>
                                                 <Link to={`/instructor/edit/${d.id}`} className='btn btn-info' >Edit</Link>
                                                 <button type='button' onClick={() => deleteData(d.id)} className='btn btn-danger'>Delete</button>

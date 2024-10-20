@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import {useParams} from "react-router-dom";
 
 function InstructorAdd() {
-      const [inputs, setInputs] = useState({id:'',instructor_name:'',designation:'',contact_number:'',email:'',fb_id:'',insta_id:'',twt_id:''});
+      const [inputs, setInputs] = useState({id:'',instructor_name:'',designation:'',contact_number:'',email:'',fb_id:'',insta_id:'',twt_id:'',photo:''});
     const navigate=useNavigate();
     const {id} = useParams();
     
@@ -119,6 +119,12 @@ function InstructorAdd() {
                                                     <div className="form-group">
                                                     <label for="email-id-vertical">Twitter</label>
                                                     <input type="text" id="twt_id" className="form-control" defaultValue={inputs.twt_id} name="twt_id" onChange={handleChange} placeholder="inatructor123"/>
+                                                    </div>
+                                                </div>
+                                                <div className="col-12">
+                                                    <div className="form-group">
+                                                    <label for="email-id-vertical">Photo</label>
+                                                    <input type="file" id="photo" className="form-control" defaultValue={inputs.photo} name="photo" onChange={handleChange} accept='image/*'/>
                                                     </div>
                                                 </div>
                                                 

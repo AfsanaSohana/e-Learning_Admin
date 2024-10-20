@@ -5,8 +5,8 @@ import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 
 function ExamAdd() {
-    const [inputs, setInputs] = useState({ id: '', exam_name: '', duration: '', start_time: '', end_time: '', subject_id: '', batch_id: '' });
-    const [subject, setSubject] = useState([]);
+    const [inputs, setInputs] = useState({ id: '', exam_name: '', subject_id: '', batch_id: '',duration: '', start_time: '', end_time: '',date:'' });
+    const [subject, setSubject] = useState([]);~
     const [batch, setBatch] = useState([]);
     const navigate = useNavigate();
     const { id } = useParams();
@@ -82,30 +82,6 @@ function ExamAdd() {
 
                                             <div className="col-12">
                                                 <div className="form-group">
-                                                    <label htmlFor="duration">Duration</label>
-                                                    <input type="text" id="duration" className="form-control"
-                                                        value={inputs.duration} name="duration" onChange={handleChange} />
-                                                </div>
-                                            </div>
-
-                                            <div className="col-12">
-                                                <div className="form-group">
-                                                    <label htmlFor="start_time">Start Date</label>
-                                                    <input type="date" id="start_time" className="form-control"
-                                                        value={inputs.start_time} name="start_time" onChange={handleChange} />
-                                                </div>
-                                            </div>
-
-                                            <div className="col-12">
-                                                <div className="form-group">
-                                                    <label htmlFor="end_time">End Date</label>
-                                                    <input type="date" id="end_time" className="form-control"
-                                                        value={inputs.end_time} name="end_time" onChange={handleChange} />
-                                                </div>
-                                            </div>
-
-                                            <div className="col-12">
-                                                <div className="form-group">
                                                     <label htmlFor="subject_id">Subject</label>
                                                     {subject.length > 0 ? (
                                                         <select id="subject_id" className="form-control"
@@ -137,6 +113,39 @@ function ExamAdd() {
                                                     )}
                                                 </div>
                                             </div>
+
+                                            <div className="col-12">
+                                                <div className="form-group">
+                                                    <label htmlFor="duration">Duration</label>
+                                                    <input type="text" id="duration" className="form-control"
+                                                        value={inputs.duration} name="duration" onChange={handleChange} />
+                                                </div>
+                                            </div>
+
+                                            <div className="col-12">
+                                                <div className="form-group">
+                                                    <label htmlFor="start_time">Start time</label>
+                                                    <input type="time" id="start_time" className="form-control"
+                                                        value={inputs.start_time} name="start_time" onChange={handleChange} />
+                                                </div>
+                                            </div>
+
+                                            <div className="col-12">
+                                                <div className="form-group">
+                                                    <label htmlFor="end_time">End time</label>
+                                                    <input type="time" id="end_time" className="form-control"
+                                                        value={inputs.end_time} name="end_time" onChange={handleChange} />
+                                                </div>
+                                            </div>
+                                            <div className="col-12">
+                                                <div className="form-group">
+                                                    <label htmlFor="end_time">Date</label>
+                                                    <input type="date" id="date" className="form-control"
+                                                        value={inputs.date} name="date" onChange={handleChange} />
+                                                </div>
+                                            </div>
+
+                                           
 
                                             <div className="col-12 d-flex justify-content-end">
                                                 <button type="submit" className="btn btn-primary mr-1 mb-1">Submit</button>
