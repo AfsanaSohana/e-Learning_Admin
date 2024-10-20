@@ -6,7 +6,7 @@ import { useParams } from 'react-router-dom';
 
 function ExamAdd() {
     const [inputs, setInputs] = useState({ id: '', exam_name: '', subject_id: '', batch_id: '',duration: '', start_time: '', end_time: '',date:'' });
-    const [subject, setSubject] = useState([]);~
+    const [subject, setSubject] = useState([]);
     const [batch, setBatch] = useState([]);
     const navigate = useNavigate();
     const { id } = useParams();
