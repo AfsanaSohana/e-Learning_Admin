@@ -60,13 +60,13 @@ function App() {
           <Route path="/syllabus/add" element={<SyllabusAdd />} />
           <Route path="/syllabus/edit/:id" element={<SyllabusAdd />} />
           
-          <Route path={"/"} element={
+          {/* <Route path={"/"} element={
             <Protected isSignedIn={isSignedIn} >
               <Dashboard />
             </Protected>
-          } />
+          } /> */}
           {/*  */}
-          <Route path={"/course"} element={
+          {/* <Route path={"/course"} element={
           <Protected isSignedIn={isSignedIn} >
             <Course />
           </Protected>
@@ -80,7 +80,7 @@ function App() {
           <Protected isSignedIn={isSignedIn} >
             <CourseAdd />
           </Protected>
-        } />
+        } /> */}
         {/* class
           <Route path={"/classes"} element={
           <Protected isSignedIn={isSignedIn} >

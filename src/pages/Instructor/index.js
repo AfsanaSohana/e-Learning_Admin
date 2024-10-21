@@ -30,6 +30,7 @@ function Instructor() {
                     <table className="table">
                         <thead>
                             <tr>
+                                
                                 <th scope="col">Instructor Name</th>
                                 <th scope="col">Designation</th>
                                 <th scope="col">Contact number</th>
