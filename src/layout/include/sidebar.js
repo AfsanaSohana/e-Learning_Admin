@@ -101,10 +101,42 @@ function Sidebar() {
                                 </div>
                             </div>
                             <div className="nav-item dropdown">
-                                <a href="#" className="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i className="fa fa-laptop me-2"></i>Course Syllabus</a>
+                                <a href="#" className="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i className="fa fa-laptop me-2"></i> Syllabus</a>
                                 <div className="dropdown-menu bg-transparent border-0">
                                     <Link to='/syllabus/add'className="dropdown-item"> Add New </Link>
                                     <Link to='/syllabus'className="dropdown-item"> list </Link>
+                                    
+                                </div>
+                            </div>
+                            <div className="nav-item dropdown">
+                                <a href="#" className="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i className="fa fa-laptop me-2"></i> Assignment</a>
+                                <div className="dropdown-menu bg-transparent border-0">
+                                    <Link to='/assignment/add'className="dropdown-item"> Add New </Link>
+                                    <Link to='/assignment'className="dropdown-item"> list </Link>
+                                    
+                                </div>
+                            </div>
+                            <div className="nav-item dropdown">
+                                <a href="#" className="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i className="fa fa-laptop me-2">Exam Result</i></a>
+                                <div className="dropdown-menu bg-transparent border-0">
+                                    <Link to='/examResult/add'className="dropdown-item"> Add New </Link>
+                                    <Link to='/examResult'className="dropdown-item"> list </Link>
+                                    
+                                </div>
+                            </div>
+                            <div className="nav-item dropdown">
+                                <a href="#" className="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i className="fa fa-laptop me-2">Attendence</i> </a>
+                                <div className="dropdown-menu bg-transparent border-0">
+                                    <Link to='/attendence/add'className="dropdown-item"> Add New </Link>
+                                    <Link to='/attendence'className="dropdown-item"> list </Link>
+                                    
+                                </div>
+                            </div>
+                            <div className="nav-item dropdown">
+                                <a href="#" className="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i className="fa fa-laptop me-2"></i>Batch Enroll </a>
+                                <div className="dropdown-menu bg-transparent border-0">
+                                    <Link to='/batchEnroll/add'className="dropdown-item"> Add New </Link>
+                                    <Link to='/batchEnroll'className="dropdown-item"> list </Link>
                                     
                                 </div>
                             </div>
