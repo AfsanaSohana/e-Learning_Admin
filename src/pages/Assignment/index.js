@@ -4,7 +4,8 @@ import AdminLayout from '../../layout/adminLayout';
 import { Link } from 'react-router-dom';
 
 
-function Batch() {
+
+function Assignment() {
 
     const[data, setData]=useState([]);
     useEffect(() => {
@@ -26,28 +27,28 @@ function Batch() {
         <div className="row g-4">
             <div className="col-sm-12">
                 <div className="bg-light rounded h-100 p-4">
-                    <h6 className="mb-4">Batch</h6>
+                    <h6 className="mb-4">Assignment</h6>
                     <table className="table">
                         <thead>
                             <tr>
                                 <th scope="col">ID</th>
-                                <th scope="col">Batch Name</th>
-                                <th scope="col">Batch Type</th>
-                                <th scope="col">Durstion</th>
-                                <th scope="col">Instructor </th>
-                                <th scope="col">Course </th>
+                                <th scope="col">Assignment</th>
+                                <th scope="col">Subject</th>
+                                <th scope="col">Course</th>
+                                <th scope="col">Document </th>
+                                <th scope="col">Submition Date </th>
                                 <th scope="col">Action</th>
                             </tr>
                         </thead>
                         <tbody>
                                     {data && data.map((d, key) =>
                                         <tr key={d.id}>
-                                            <td>{d.id}</td>
-                                            <td>{d.batch_name}</td>
-                                            <td>{d.batch_type}</td>
-                                            <td>{d.duration}</td>
-                                            <td>{d.instructor?.instructor_name}</td>
-                                            <td>{d.course?.course_name}</td>
+                                          
+                                            <td>{d.assignment_name}</td>
+                                            <td>{d.subject_id}</td>
+                                            <td>{d.course_id}</td>
+                                            <td>{d.document}</td>
+                                            <td>{d.date}</td>
                                            
                                             <td>
                                                 <Link to={`/assignment/edit/${d.id}`} className='btn btn-info' >Edit</Link>
@@ -64,4 +65,4 @@ function Batch() {
   )
 }
 
-export default Batch
+export default Assignment
