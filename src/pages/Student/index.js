@@ -45,7 +45,15 @@ function Student() {
                                             <td>{d.student_name}</td>
                                             <td>{d.email}</td>
                                             <td>{d.contact_number}</td>
-                                            <td>{d.photo}</td>
+                                            <td>
+                                                        {
+                                                            d.image.split(',').map((src, i) => (
+                                                                <img src={`${process.env.REACT_APP_BACKEND_URL}/student/${src}`} alt="student" />
+                                                            ))
+                                                        }
+
+
+                                                    </td>
                                             <td>
                                                 <Link to={`/student/edit/${d.id}`} className='btn btn-info' >Edit</Link>
                                                 <button type='button' onClick={() => deleteData(d.id)} className='btn btn-danger'>Delete</button>

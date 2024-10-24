@@ -6,7 +6,9 @@ import {useParams} from "react-router-dom";
 
 function StudentAdd() {
       const [inputs, setInputs] = useState({id:'',student_name:'',email:'',contact_number:'',photo:''});
+      const [selectedfile, setSelectedFile] = useState([]);
     const navigate=useNavigate();
+  
     const {id} = useParams();
     
     function getDatas(){
@@ -30,6 +32,22 @@ function StudentAdd() {
     const handleSubmit = async(e) => {
         e.preventDefault();
         console.log(inputs)
+
+        const handelFile = (e) => {
+            setSelectedFile(e.target.files)
+        }
+        const handleSubmit = async (e) => {
+            e.preventDefault();
+    
+            const formData = new FormData();
+    
+            for (let i = 0; i < selectedfile.length; i++) {
+                formData.append('files[]', selectedfile[i])
+            }
+    
+            for (const property in inputs) {
+                formData.append(property, inputs[property])
+            }
         
         try{
             let apiurl='';
@@ -100,7 +118,7 @@ function StudentAdd() {
                                                 <div className="col-12">
                                                     <div className="form-group">
                                                     <label for="email-id-vertical">photo</label>
-                                                    <input type="file" id="photo" className="form-control" accept="image/*" defaultValue={inputs.photo} name="photo" onChange={handleChange} placeholder="sohana@email.com"/>
+                                                    <input type="file" id="photo" className="form-control" accept="image/*" multiple defaultValue={inputs.photo} name="photo" onChange={handelFile} placeholder="sohana@email.com"/>
                                                     </div>
                                                 </div>
                                                 

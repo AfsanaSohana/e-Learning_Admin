@@ -22,6 +22,8 @@ import Subject from './pages/Subject';
 import SubjectAdd from './pages/Subject/SubjectAdd';
 import Syllabus from './pages/Syllabus';
 import SyllabusAdd from './pages/Syllabus/SyllabusAdd';
+import BatchEnrollRequest from './pages/BatchEnrollRequest';
+import BatchEnrollRequestAdd from './pages/BatchEnrollRequest/BatchEnrollRequestAdd';
 
 
 function App() {
@@ -59,6 +61,9 @@ function App() {
           <Route path="/syllabus" element={<Syllabus />} />
           <Route path="/syllabus/add" element={<SyllabusAdd />} />
           <Route path="/syllabus/edit/:id" element={<SyllabusAdd />} />
+          <Route path="/batchEnrollRequest" element={<BatchEnrollRequest />} />
+          <Route path="/batchEnrollRequest/add" element={<BatchEnrollRequestAdd />} />
+          <Route path="/batchEnrollRequest/edit/:id" element={<BatchEnrollRequestAdd />} />
           
           {/* <Route path={"/"} element={
             <Protected isSignedIn={isSignedIn} >
