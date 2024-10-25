@@ -29,9 +29,10 @@ function StudentAdd() {
         setInputs(values => ({...values, [name]: value}));
     }
 
-    const handleSubmit = async(e) => {
-        e.preventDefault();
-        console.log(inputs)
+    // const handleSubmit = async(e) => {
+    //     e.preventDefault();
+    //     console.log(inputs)
+    
 
         const handelFile = (e) => {
             setSelectedFile(e.target.files)

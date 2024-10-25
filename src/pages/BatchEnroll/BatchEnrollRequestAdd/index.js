@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import {useParams} from "react-router-dom";
 
 function BatchEnrollRequestAdd() {
-    const [inputs, setInputs] = useState({id:'',batch_id:'',course_id:'',student_id:'',enroll_date:'',fees:''});
+    const [inputs, setInputs] = useState({id:'',batch_id:'',course_id:'',student_id:'',status:'',enroll_date:'',fees:''});
     const [batch, setBatch] = useState([]);
     const [course, setCourse] = useState([]);
     const [student, setStudent] = useState([]);
@@ -133,6 +133,12 @@ function BatchEnrollRequestAdd() {
                                                                     ))}
                                                                 </select>
                                                             }
+                                                        </div>
+                                                    </div>
+                                                    <div className="col-12">
+                                                        <div className="form-group">
+                                                            <label htmlFor="enroll_date">status</label>
+                                                            <input type="text" id="status" className="form-control" defaultValue={inputs.status} name="status" onChange={handleChange} />
                                                         </div>
                                                     </div>
                                                     <div className="col-12">
