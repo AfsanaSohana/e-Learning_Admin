@@ -13,7 +13,7 @@ function ExamAdd() {
 
     // Fetch exam data if `id` is present
     const getDatas = () => {
-        if (id) {
+        if (id) {       
             axios.get(`${process.env.REACT_APP_API_URL}/exam/${id}`).then((response) => {
                 setInputs(response.data.data);
             }).catch((error) => {

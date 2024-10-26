@@ -119,7 +119,7 @@ function StudentAdd() {
                                                 <div className="col-12">
                                                     <div className="form-group">
                                                     <label for="email-id-vertical">photo</label>
-                                                    <input type="file" id="photo" className="form-control" accept="image/*" multiple defaultValue={inputs.photo} name="photo" onChange={handelFile} placeholder="sohana@email.com"/>
+                                                    <input type="file" id="photo" className="form-control" accept="image/*" multiple defaultValue={inputs.photo} name="photo" onChange={handelFile}/>
                                                     </div>
                                                 </div>
                                                 
