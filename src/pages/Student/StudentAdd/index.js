@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import {useParams} from "react-router-dom";
 
 function StudentAdd() {
-      const [inputs, setInputs] = useState({id:'',student_name:'',email:'',contact_number:'',photo:''});
+      const [inputs, setInputs] = useState({id:'',student_name:'',email:'',address:'',contact_number:'',photo:'',password:''});
       const [selectedfile, setSelectedFile] = useState([]);
     const navigate=useNavigate();
   
@@ -61,7 +61,7 @@ function StudentAdd() {
             let response= await axios({
                 method: 'post',
                 responsiveTYpe: 'json',
-                url: `${process.env.REACT_APP_API_URL}${apiurl}`,
+                url: `${process.env.REACT_APP_API_URL}${apiurl,formData}`,
                 data: inputs
             });
             console.log(response)
@@ -104,6 +104,7 @@ function StudentAdd() {
                                                     <input type="text" id="student_name" className="form-control" defaultValue={inputs.student_name} name="student_name" onChange={handleChange} placeholder="Enter student name"/>
                                                     </div>
                                                 </div>
+                                                
                                                 <div className="col-12">
                                                     <div className="form-group">
                                                     <label for="email-id-vertical">Email</label>
@@ -112,14 +113,21 @@ function StudentAdd() {
                                                 </div>
                                                 <div className="col-12">
                                                     <div className="form-group">
-                                                    <label for="email-id-vertical">Contact Number</label>
-                                                    <input type="text" id="contact_number" className="form-control" defaultValue={inputs.contact_number} name="contact_number" onChange={handleChange} placeholder=""/>
+                                                    <label for="email-id-vertical">Address</label>
+                                                    <input type="text" id="address" className="form-control" defaultValue={inputs.address} name="address" onChange={handleChange} placeholder="road,street,city"/>
                                                     </div>
                                                 </div>
+                                               
                                                 <div className="col-12">
                                                     <div className="form-group">
                                                     <label for="email-id-vertical">photo</label>
                                                     <input type="file" id="photo" className="form-control" accept="image/*" multiple defaultValue={inputs.photo} name="photo" onChange={handelFile}/>
+                                                    </div>
+                                                </div>
+                                                <div className="col-12">
+                                                    <div className="form-group">
+                                                    <label for="email-id-vertical">Password</label>
+                                                    <input type="password" id="password" className="form-control" defaultValue={inputs.password} name="password" onChange={handleChange} placeholder="******"/>
                                                     </div>
                                                 </div>
                                                 
