@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import AdminLayout from '../../layout/adminLayout';
-import { Link } from 'react-router-dom';
+
 
 function BatchEnrollRequest() {
     const [data, setData] = useState([]);
@@ -17,8 +17,13 @@ function BatchEnrollRequest() {
     }
 
     const approveData = (id) => {
-        axios.put(`${process.env.REACT_APP_API_URL}/batchEnroll/approve/${id}`).then(function(response){
+        axios.get(`${process.env.REACT_APP_API_URL}/batchEnroll/approve/${id}`).then(function(response){
             getDatas(); 
+        });
+    }
+     const deleteData = (id) => {
+        axios.delete(`${process.env.REACT_APP_API_URL}/batchEnrollRequest/${id}`).then(function(response){
+            getDatas();
         });
     }
 
@@ -55,8 +60,8 @@ function BatchEnrollRequest() {
                                             <td>{d.trans_id}</td>
                                             <td>{d.payment_method}</td>
                                             <td>
-                                                <Link to={`/batchEnroll/edit/${d.id}`} className='btn btn-info'>Edit</Link>
                                                 <button type='button' onClick={() => approveData(d.id)} className='btn btn-success'>Approve</button>
+                                                 <button type='button' onClick={() => deleteData(d.id)} className='btn btn-danger'>Delete</button>
                                             </td>
                                         </tr>
                                     )}

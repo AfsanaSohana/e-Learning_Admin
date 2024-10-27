@@ -36,6 +36,7 @@ function Batch() {
                                 <th scope="col">Durstion</th>
                                 <th scope="col">Instructor </th>
                                 <th scope="col">Course </th>
+                                <th scope="col">Number of Student </th>
                                 <th scope="col">Action</th>
                             </tr>
                         </thead>
@@ -48,6 +49,7 @@ function Batch() {
                                             <td>{d.duration}</td>
                                             <td>{d.instructor?.instructor_name}</td>
                                             <td>{d.course?.course_name}</td>
+                                             <td>{d.number_of_student}</td>
                                            
                                             <td>
                                                 <Link to={`/batch/edit/${d.id}`} className='btn btn-info' >Edit</Link>

@@ -34,7 +34,6 @@ function Student() {
                                 <th scope="col">Student Name</th>
                                 <th scope="col">Email</th>
                                 <th scope="col">Address</th>
-                                <th scope="col">Contact Number</th>
                                 <th scope="col">Photo</th>
                                 <th scope="col">Password</th>
                                 <th scope="col">Action</th>
@@ -47,7 +46,6 @@ function Student() {
                                             <td>{d.student_name}</td>
                                             <td>{d.email}</td>
                                             <td>{d.address}</td>
-                                            <td>{d.contact_number}</td>
                                             <td>{d.password}</td>
                                             <td>
                                                 {
