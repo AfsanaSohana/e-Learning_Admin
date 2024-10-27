@@ -148,6 +148,14 @@ function Sidebar() {
                                     
                                 </div>
                             </div>
+                            <div className="nav-item dropdown">
+                                <a href="#" className="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i className="fa fa-laptop ms-2 me-2"></i>Certificate </a>
+                                <div className="dropdown-menu bg-transparent border-0">
+                                    <Link to='/certificate/add'className="dropdown-item"> Add New </Link>
+                                    <Link to='/certificate'className="dropdown-item"> list </Link>
+                                    
+                                </div>
+                            </div>
                             
                         </div>
                     </nav>

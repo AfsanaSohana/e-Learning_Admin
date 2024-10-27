@@ -96,15 +96,22 @@ function SyllabusAdd() {
                                         <div className="form-body">
                                             <div className="row">
                                                 
-                                                <div className="col-12">
+                                            <div className="col-12">
                                                     <div className="form-group">
-                                                    <label for="duration"> Duration</label>
-                                                    <input type="text" id="duration" className="form-control" defaultValue={inputs.duration} name="duration" onChange={handleChange} placeholder="Enter class name"/>
+                                                        <label for="instructor">Course </label>
+                                                            {course.length > 0 &&
+                                                                <select  id="course_id" className="form-control" defaultValue={inputs.course_id} name="course_id" onChange={handleChange} >
+                                                                    <option value="">Select course</option>
+                                                                            {course.map((d, key) =>
+                                                                                <option value={d.id}>{d.course_name}</option>
+                                                                            )}
+                                                                </select>
+                                                            }
                                                     </div>
                                                 </div>
                                                 <div className="col-12">
                                                     <div className="form-group">
-                                                        <label for="instructor">Instructor </label>
+                                                        <label for="instructor">Subject </label>
                                                             {subject.length > 0 &&
                                                                 <select  id="subject_id" className="form-control" defaultValue={inputs.subject_id} name="subject_id" onChange={handleChange} >
                                                                     <option value="">Select instructor</option>
@@ -115,19 +122,7 @@ function SyllabusAdd() {
                                                             }
                                                     </div>
                                                 </div>
-                                                <div className="col-12">
-                                                    <div className="form-group">
-                                                    <label for="course"> course </label>
-                                                      {course.length > 0 &&
-                                                            <select type="text" id="course_id" className="form-control" defaultValue={inputs.course_id} name="course_id" onChange={handleChange} placeholder="Enter class name">
-                                                                <option value="">Select Course</option>
-                                                                    {course.map((d, key) =>
-                                                                        <option value={d.id}>{d.course_name}</option>
-                                                                    )}
-                                                            </select>
-                                                      }
-                                                    </div>
-                                                </div>
+                                                
                                                 <div className="col-12">
                                                     <div className="form-group">
                                                     <label for="batch_name">Title</label>

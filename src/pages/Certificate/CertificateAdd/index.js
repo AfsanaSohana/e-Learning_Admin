@@ -4,26 +4,32 @@ import AdminLayout from '../../../layout/adminLayout';
 import { useNavigate } from 'react-router-dom';
 import {useParams} from "react-router-dom";
 
-function BatchAdd() {
-      const [inputs, setInputs] = useState({id:'',batch_name:'',batch_type:'',duration:'',instructor_id:'',course_id:''});
-        const [instructor, setInstructor] = useState([]);
+function CertificateAdd() {
+      const [inputs, setInputs] = useState({id:'',student_id:'',course_id:'',instructor_id:'',passing_date:'',director:''});
+        const [student, setStudent] = useState([]);
         const [course, setCourse] = useState([]);
+        const [instructor, setInstructor] = useState([]);
         const navigate=useNavigate();
         const {id} = useParams();
     
     function getDatas(){
-        axios.get(`${process.env.REACT_APP_API_URL}/batch/${id}`).then(function(response) {
+        axios.get(`${process.env.REACT_APP_API_URL}/certificate/${id}`).then(function(response) {
             setInputs(response.data.data);
         });
     }
      const getRelational = async (e) => {
-        axios.get(`${process.env.REACT_APP_API_URL}/instructor`).then(function(response) {
-            setInstructor(response.data.data);
+        axios.get(`${process.env.REACT_APP_API_URL}/student`).then(function(response) {
+            setStudent(response.data.data);
+         
         });
         axios.get(`${process.env.REACT_APP_API_URL}/course`).then(function(response) {
             setCourse(response.data.data);
          
         });
+        axios.get(`${process.env.REACT_APP_API_URL}/instructor`).then(function(response) {
+            setInstructor(response.data.data);
+        });
+       
         
     }
 
@@ -47,9 +53,9 @@ function BatchAdd() {
         try{
             let apiurl='';
             if(inputs.id!=''){
-                apiurl=`/batch/edit/${inputs.id}`;
+                apiurl=`/certificate/edit/${inputs.id}`;
             }else{
-                apiurl=`/batch/create`;
+                apiurl=`/certificate/create`;
             }
             
             let response= await axios({
@@ -59,7 +65,7 @@ function BatchAdd() {
                 data: inputs
             });
             console.log(response)
-            navigate('/batch')
+            navigate('/certificate')
         } 
         catch(e){
             console.log(e);
@@ -72,7 +78,7 @@ function BatchAdd() {
             <div className="page-title">
                 <div className="row">
                     <div className="col-12 col-md-6 order-md-1 order-last">
-                        <h3>Add New batch</h3>
+                        <h3>Add New certificate</h3>
                     </div>
                     <div className="col-12 col-md-6 order-md-2 order-first">
                         <nav aria-label="breadcrumb" className='breadcrumb-header'>
@@ -93,32 +99,15 @@ function BatchAdd() {
                                     <form className="form form-vertical" onSubmit={handleSubmit}>
                                         <div className="form-body">
                                             <div className="row">
+                                               
                                                 <div className="col-12">
                                                     <div className="form-group">
-                                                    <label for="batch_name">Batch Name</label>
-                                                    <input type="text" id="batch_name" className="form-control" defaultValue={inputs.batch_name} name="batch_name" onChange={handleChange} placeholder="Enter batch name"/>
-                                                    </div>
-                                                </div>
-                                                <div className="col-12">
-                                                    <div className="form-group">
-                                                    <label for="batch_type"> Batch Type</label>
-                                                    <input type="text" id="batch_type" className="form-control" defaultValue={inputs.batch_type} name="batch_type" onChange={handleChange} placeholder="regular batch "/>
-                                                    </div>
-                                                </div>
-                                                <div className="col-12">
-                                                    <div className="form-group">
-                                                    <label for="duration"> Duration</label>
-                                                    <input type="text" id="duration" className="form-control" defaultValue={inputs.duration} name="duration" onChange={handleChange} placeholder="Enter class name"/>
-                                                    </div>
-                                                </div>
-                                                <div className="col-12">
-                                                    <div className="form-group">
-                                                        <label for="instructor">Instructor </label>
-                                                            {instructor.length > 0 &&
-                                                                <select  id="instructor_id" className="form-control" defaultValue={inputs.instructor_id} name="instructor_id" onChange={handleChange} >
-                                                                    <option value="">Select instructor</option>
-                                                                            {instructor.map((d, key) =>
-                                                                                <option value={d.id}>{d.instructor_name}</option>
+                                                        <label for="certificate">Student </label>
+                                                            {student.length > 0 &&
+                                                                <select  id="student_id" className="form-control" defaultValue={inputs.student_id} name="student_id" onChange={handleChange} >
+                                                                    <option value="">Select Student</option>
+                                                                            {student.map((d, key) =>
+                                                                                <option value={d.id}>{d.student_name}</option>
                                                                             )}
                                                                 </select>
                                                             }
@@ -137,7 +126,31 @@ function BatchAdd() {
                                                       }
                                                     </div>
                                                 </div>
-                                                
+                                                <div className="col-12">
+                                                    <div className="form-group">
+                                                        <label for="instructor">Instructor </label>
+                                                            {instructor.length > 0 &&
+                                                                <select  id="instructor_id" className="form-control" defaultValue={inputs.instructor_id} name="instructor_id" onChange={handleChange} >
+                                                                    <option value="">Select instructor</option>
+                                                                            {instructor.map((d, key) =>
+                                                                                <option value={d.id}>{d.instructor_name}</option>
+                                                                            )}
+                                                                </select>
+                                                            }
+                                                    </div>
+                                                </div>
+                                                <div className="col-12">
+                                                    <div className="form-group">
+                                                    <label for="passing_date"> Passing Date</label>
+                                                    <input type="date" id="passing_date" className="form-control" defaultValue={inputs.passing_date} name="passing_date" onChange={handleChange} placeholder=" "/>
+                                                    </div>
+                                                </div>
+                                                <div className="col-12">
+                                                    <div className="form-group">
+                                                    <label for="duration"> Director</label>
+                                                    <input type="text" id="director" className="form-control" defaultValue={inputs.director} name="director" onChange={handleChange} placeholder="Enter class name"/>
+                                                    </div>
+                                                </div>
                                                 
                                                 <div className="col-12 d-flex justify-content-end">
                                                     <button type="submit" className="btn btn-primary mr-1 mb-1">Submit</button>
@@ -157,4 +170,4 @@ function BatchAdd() {
   )
 }
 
-export default BatchAdd
+export default CertificateAdd

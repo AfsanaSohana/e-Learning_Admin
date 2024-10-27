@@ -20,11 +20,10 @@ import RoutineAdd from './pages/Routine/RoutineAdd';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Subject from './pages/Subject';
 import SubjectAdd from './pages/Subject/SubjectAdd';
-import Syllabus from './pages/Syllabus';
-import SyllabusAdd from './pages/Syllabus/SyllabusAdd';
 import BatchEnrollRequest from './pages/BatchEnrollRequest';
 import BatchEnrollRequestAdd from './pages/BatchEnrollRequest/BatchEnrollRequestAdd';
-
+import Certificate from './pages/Certificate';
+import CertificateAdd from './pages/Certificate/CertificateAdd';
 
 function App() {
   const isSignedIn = localStorage.getItem("access_token") || false;
@@ -58,12 +57,15 @@ function App() {
           <Route path="/subject" element={<Subject />} />
           <Route path="/subject/add" element={<SubjectAdd />} />
           <Route path="/subject/edit/:id" element={<SubjectAdd />} />
-          <Route path="/syllabus" element={<Syllabus />} />
+          {/* <Route path="/syllabus" element={<Syllabus />} />
           <Route path="/syllabus/add" element={<SyllabusAdd />} />
-          <Route path="/syllabus/edit/:id" element={<SyllabusAdd />} />
+          <Route path="/syllabus/edit/:id" element={<SyllabusAdd />} /> */}
           <Route path="/batchEnrollRequest" element={<BatchEnrollRequest />} />
           <Route path="/batchEnrollRequest/add" element={<BatchEnrollRequestAdd />} />
           <Route path="/batchEnrollRequest/edit/:id" element={<BatchEnrollRequestAdd />} />
+          <Route path="/certificate" element={<Certificate />} />
+          <Route path="/certificate/add" element={<CertificateAdd />} />
+          <Route path="/certificate/edit/:id" element={<CertificateAdd />} />
           
           {/* <Route path={"/"} element={
             <Protected isSignedIn={isSignedIn} >
