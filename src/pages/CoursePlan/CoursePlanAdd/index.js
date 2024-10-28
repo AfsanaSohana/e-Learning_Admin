@@ -4,7 +4,7 @@ import AdminLayout from '../../../layout/adminLayout';
 import { useNavigate } from 'react-router-dom';
 import {useParams} from "react-router-dom";
 
-function SyllabusAdd() {
+function CoursePlanAdd() {
       const [inputs, setInputs] = useState({id:'',course_id:'',subject_id:'',title:'',document:''});
           const [course, setCourse] = useState([]);
         const [subject, setSubject] = useState([]);
@@ -13,7 +13,7 @@ function SyllabusAdd() {
         const {id} = useParams();
     
     function getDatas(){
-        axios.get(`${process.env.REACT_APP_API_URL}/syllabus/${id}`).then(function(response) {
+        axios.get(`${process.env.REACT_APP_API_URL}/coursePlan/${id}`).then(function(response) {
             setInputs(response.data.data);
         });
     }
@@ -49,9 +49,9 @@ function SyllabusAdd() {
         try{
             let apiurl='';
             if(inputs.id!=''){
-                apiurl=`/syllabus/edit/${inputs.id}`;
+                apiurl=`/coursePlan/edit/${inputs.id}`;
             }else{
-                apiurl=`/syllabus/create`;
+                apiurl=`/coursePlan/create`;
             }
             
             let response= await axios({
@@ -61,7 +61,7 @@ function SyllabusAdd() {
                 data: inputs
             });
             console.log(response)
-            navigate('/syllabus')
+            navigate('/coursePlan')
         } 
         catch(e){
             console.log(e);
@@ -74,7 +74,7 @@ function SyllabusAdd() {
             <div className="page-title">
                 <div className="row">
                     <div className="col-12 col-md-6 order-md-1 order-last">
-                        <h3>Add New syllabus</h3>
+                        <h3>Add New coursePlan</h3>
                     </div>
                     <div className="col-12 col-md-6 order-md-2 order-first">
                         <nav aria-label="breadcrumb" className='breadcrumb-header'>
@@ -114,7 +114,7 @@ function SyllabusAdd() {
                                                         <label for="instructor">Subject </label>
                                                             {subject.length > 0 &&
                                                                 <select  id="subject_id" className="form-control" defaultValue={inputs.subject_id} name="subject_id" onChange={handleChange} >
-                                                                    <option value="">Select instructor</option>
+                                                                    <option value="">Select subject</option>
                                                                             {subject.map((d, key) =>
                                                                                 <option value={d.id}>{d.subject_name}</option>
                                                                             )}
@@ -126,7 +126,7 @@ function SyllabusAdd() {
                                                 <div className="col-12">
                                                     <div className="form-group">
                                                     <label for="batch_name">Title</label>
-                                                    <input type="textarea" id="title" className="form-control" defaultValue={inputs.title} name="title" onChange={handleChange} placeholder="Enter syllabus detail"/>
+                                                    <input type="textarea" id="title" className="form-control" defaultValue={inputs.title} name="title" onChange={handleChange} placeholder="Enter coursePlan detail"/>
                                                     </div>
                                                 </div>
                                                 <div className="col-12">
@@ -154,4 +154,4 @@ function SyllabusAdd() {
   )
 }
 
-export default SyllabusAdd
+export default CoursePlanAdd

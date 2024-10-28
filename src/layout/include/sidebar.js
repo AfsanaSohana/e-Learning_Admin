@@ -101,10 +101,10 @@ function Sidebar() {
                                 </div>
                             </div>
                             <div className="nav-item dropdown">
-                                <a href="#" className="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i className="fa fa-laptop me-2"></i> Syllabus</a>
+                                <a href="#" className="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i className="fa fa-laptop me-2"></i> Course Plan</a>
                                 <div className="dropdown-menu bg-transparent border-0">
-                                    <Link to='/syllabus/add'className="dropdown-item"> Add New </Link>
-                                    <Link to='/syllabus'className="dropdown-item"> list </Link>
+                                    <Link to='/coursePlan/add'className="dropdown-item"> Add New </Link>
+                                    <Link to='/coursePlan'className="dropdown-item"> list </Link>
                                     
                                 </div>
                             </div>

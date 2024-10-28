@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import axios from '../../../components/axios';
 import AdminLayout from '../../../layout/adminLayout';
 import { useNavigate } from 'react-router-dom';
 import {useParams} from "react-router-dom";
@@ -14,6 +14,7 @@ function StudentAdd() {
     function getDatas(){
         axios.get(`${process.env.REACT_APP_API_URL}/student/${id}`).then(function(response) {
             setInputs(response.data.data);
+            
         });
     }
 
@@ -53,7 +54,7 @@ function StudentAdd() {
         try{
             let apiurl='';
             if(inputs.id!=''){
-                apiurl=`/student/edit/${inputs.id}`;
+                apiurl=`/student/${inputs.id}`;
             }else{
                 apiurl=`/student/create`;
             }
