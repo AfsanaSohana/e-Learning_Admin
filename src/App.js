@@ -24,6 +24,10 @@ import BatchEnrollRequest from './pages/BatchEnrollRequest';
 import BatchEnrollRequestAdd from './pages/BatchEnrollRequest/BatchEnrollRequestAdd';
 import Certificate from './pages/Certificate';
 import CertificateAdd from './pages/Certificate/CertificateAdd';
+import CoursePlan from './pages/CoursePlan';
+import CoursePlanAdd from './pages/CoursePlan/CoursePlanAdd';
+import Attendence from './pages/Attendence';
+import AttendenceAdd from './pages/Attendence/AttendenceAdd';
 
 function App() {
   const isSignedIn = localStorage.getItem("access_token") || false;
@@ -57,15 +61,18 @@ function App() {
           <Route path="/subject" element={<Subject />} />
           <Route path="/subject/add" element={<SubjectAdd />} />
           <Route path="/subject/edit/:id" element={<SubjectAdd />} />
-          {/* <Route path="/syllabus" element={<Syllabus />} />
-          <Route path="/syllabus/add" element={<SyllabusAdd />} />
-          <Route path="/syllabus/edit/:id" element={<SyllabusAdd />} /> */}
+          <Route path="/coursePlan" element={<CoursePlan />} />
+          <Route path="/coursePlan/add" element={<CoursePlanAdd />} />
+          <Route path="/coursePlan/edit/:id" element={<CoursePlanAdd />} />
           <Route path="/batchEnrollRequest" element={<BatchEnrollRequest />} />
           <Route path="/batchEnrollRequest/add" element={<BatchEnrollRequestAdd />} />
           <Route path="/batchEnrollRequest/edit/:id" element={<BatchEnrollRequestAdd />} />
           <Route path="/certificate" element={<Certificate />} />
           <Route path="/certificate/add" element={<CertificateAdd />} />
           <Route path="/certificate/edit/:id" element={<CertificateAdd />} />
+          <Route path="/attendence" element={<Attendence />} />
+          <Route path="/attendence/add" element={<AttendenceAdd />} />
+          <Route path="/attendence/edit/:id" element={<AttendenceAdd />} />
           
           {/* <Route path={"/"} element={
             <Protected isSignedIn={isSignedIn} >
