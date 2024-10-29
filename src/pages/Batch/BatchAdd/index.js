@@ -137,6 +137,17 @@ function BatchAdd() {
                                                       }
                                                     </div>
                                                 </div>
+                                                <div className="col-12">
+                                                    <div className="form-group">
+                                                    <label for="batch_name">Number of Student</label>
+                                                    <input type="text" id="number_of_student" className="form-control" defaultValue={inputs.number_of_student} name="number_of_student" onChange={handleChange} placeholder="20"/>
+                                                    </div>
+                                                </div> <div className="col-12">
+                                                    <div className="form-group">
+                                                    <label for="batch_name">Batch Details</label>
+                                                    <input type="text" id="batch_details" className="form-control" defaultValue={inputs.batch_details} name="batch_details" onChange={handleChange} placeholder="Enter batch name"/>
+                                                    </div>
+                                                </div>
                                                 
                                                 
                                                 <div className="col-12 d-flex justify-content-end">
