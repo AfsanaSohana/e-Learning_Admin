@@ -40,7 +40,7 @@ function StudentAdd() {
         }
         const handleSubmit = async (e) => {
             e.preventDefault();
-    
+
             const formData = new FormData();
     
             for (let i = 0; i < selectedfile.length; i++) {
@@ -50,7 +50,7 @@ function StudentAdd() {
             for (const property in inputs) {
                 formData.append(property, inputs[property])
             }
-        
+         
         try{
             let apiurl='';
             if(inputs.id!=''){
@@ -62,8 +62,8 @@ function StudentAdd() {
             let response= await axios({
                 method: 'post',
                 responsiveTYpe: 'json',
-                url: `${process.env.REACT_APP_API_URL}${apiurl,formData}`,
-                data: inputs
+                url: `${process.env.REACT_APP_API_URL}${apiurl}`,
+                data: formData
             });
             console.log(response)
             navigate('/student')
@@ -110,6 +110,12 @@ function StudentAdd() {
                                                     <div className="form-group">
                                                     <label for="email-id-vertical">Email</label>
                                                     <input type="text" id="email" className="form-control" defaultValue={inputs.email} name="email" onChange={handleChange} placeholder="sohana@email.com"/>
+                                                    </div>
+                                                </div>
+                                                <div className="col-12">
+                                                    <div className="form-group">
+                                                    <label for="email-id-vertical">Contact Number</label>
+                                                    <input type="text" id="contact_number" className="form-control" defaultValue={inputs.contact_number} name="contact_number" onChange={handleChange} placeholder=""/>
                                                     </div>
                                                 </div>
                                                 <div className="col-12">
