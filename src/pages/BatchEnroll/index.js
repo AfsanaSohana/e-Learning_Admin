@@ -4,20 +4,34 @@ import AdminLayout from '../../layout/adminLayout';
 import { Link } from 'react-router-dom';
 
 
-function BatchEnrollRequest() {
+function BatchEnroll() {
+
+  
+        const [enrollData, setEnrollData] = useState([]);
+    
+        const fetchAndMoveData = async () => {
+            try {
+                const response = await axios.get(`${process.env.REACT_APP_API_URL}/batch-enroll/move-and-fetch`);
+                setEnrollData(response.data); // Update state with the fetched data
+            } catch (error) {
+                console.error("Error fetching data", error);
+            }
+        }
+        
 
     const[data, setData]=useState([]);
     useEffect(() => {
         getDatas();
+        fetchAndMoveData();
     }, []);
 
     function getDatas() {
-        axios.get(`${process.env.REACT_APP_API_URL}/batchEnrollRequest`).then(function(response) {
+        axios.get(`${process.env.REACT_APP_API_URL}/batchEnroll`).then(function(response) {
             setData(response.data.data);
         });
     }
     const deleteData = (id) => {
-        axios.delete(`${process.env.REACT_APP_API_URL}/batchEnrollRequest/${id}`).then(function(response){
+        axios.delete(`${process.env.REACT_APP_API_URL}/batchEnroll/${id}`).then(function(response){
             getDatas();
         });
     }
@@ -26,10 +40,11 @@ function BatchEnrollRequest() {
         <div className="row g-4">
             <div className="col-sm-12">
                 <div className="bg-light rounded h-100 p-4">
-                    <h6 className="mb-4">BatchEnrollRequest</h6>
+                    <h6 className="mb-4">BatchEnroll</h6>
                     <table className="table">
                         <thead>
                             <tr>
+                               
                                 <th scope="col">Batch</th>
                                 <th scope="col">course</th>
                                 <th scope="col">Student name</th>
@@ -39,8 +54,8 @@ function BatchEnrollRequest() {
                                 <th scope="col">Action</th>
                             </tr>
                         </thead>
-                        <tbody>
-                                    {data && data.map((d, key) =>
+                        <tbody> 
+                                    {data && enrollData.map((d) => (
                                         <tr key={d.id}>
                                             <td>{d.batch_id}</td>
                                             <td>{d.course_id}</td>
@@ -49,11 +64,11 @@ function BatchEnrollRequest() {
                                             <td>{d.enroll_date}</td>
                                             <td>{d.fees}</td>
                                             <td>
-                                                <Link to={`/batchEnrollRequest/edit/${d.id}`} className='btn btn-info' >Edit</Link>
+                                                <Link to={`/batchEnroll/edit/${d.id}`} className='btn btn-info' >Edit</Link>
                                                 <button type='button' onClick={() => deleteData(d.id)} className='btn btn-danger'>Delete</button>
                                             </td>
                                         </tr>
-                                    )}
+                                   ))}
                                     </tbody>
                     </table>
                 </div>
@@ -63,4 +78,4 @@ function BatchEnrollRequest() {
   )
 }
 
-export default BatchEnrollRequest
+export default BatchEnroll
