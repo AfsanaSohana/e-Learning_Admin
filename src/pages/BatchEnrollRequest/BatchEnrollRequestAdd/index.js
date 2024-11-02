@@ -13,7 +13,7 @@ function BatchEnrollRequestAdd() {
     const {id} = useParams();
     
     function getDatas(){
-        axios.get(`${process.env.REACT_APP_API_URL}/batchEnrollRequest/${id}`).then(function(response) {
+        axios.get(`${process.env.REACT_APP_API_URL}/batch_en_req/${id}`).then(function(response) {
             setInputs(response.data.data);
         });
     }
@@ -50,9 +50,9 @@ function BatchEnrollRequestAdd() {
         try {
             let apiurl = '';
             if(inputs.id !== ''){
-                apiurl = `/batchEnrollRequest/edit/${inputs.id}`;
+                apiurl = `/batch_en_req/edit/${inputs.id}`;
             } else {
-                apiurl = `/batchEnrollRequest/create`;
+                apiurl = `/batch_en_req/create`;
             }
             
             let response = await axios({

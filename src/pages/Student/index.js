@@ -12,7 +12,7 @@ function Student() {
     }, []);
 
     const getDatas = async (e) => {
-        let res = await axios.get(`/student/index`)
+        let res = await axios.get(`/student`)
         setData(res.data.data);
 
     }
@@ -50,7 +50,7 @@ function Student() {
                                             <td>
                                                 {
                                                     d.photo && d.photo.split(',').map((src, i) => (
-                                                        <img key={i} src={`${process.env.REACT_APP_BACKEND_URL}/student/${src}`} alt="student" />
+                                                        <img key={i} src={`${process.env.REACT_APP_BACKEND_URL}/studentadd/${src}`} alt="student" width="50px" />
                                                     ))
                                                 }
                                             </td>

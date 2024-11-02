@@ -58,14 +58,9 @@ function StudentAdd() {
             }else{
                 apiurl=`/student/create`;
             }
+            let res = await axios.post(apiurl, formData)
             
-            let response= await axios({
-                method: 'post',
-                responsiveTYpe: 'json',
-                url: `${process.env.REACT_APP_API_URL}${apiurl}`,
-                data: formData
-            });
-            console.log(response)
+            console.log(res)
             navigate('/student')
         } 
         catch(e){
@@ -128,7 +123,7 @@ function StudentAdd() {
                                                 <div className="col-12">
                                                     <div className="form-group">
                                                     <label for="email-id-vertical">photo</label>
-                                                    <input type="file" id="photo" className="form-control" accept="image/*" multiple defaultValue={inputs.photo} name="photo" onChange={handelFile}/>
+                                                    <input type="file" id="photo" className="form-control" accept="image/*" multiple name="photo" onChange={handelFile}/>
                                                     </div>
                                                 </div>
                                                 <div className="col-12">
@@ -152,7 +147,7 @@ function StudentAdd() {
                 </div>
             </section>
         </div>
-    </AdminLayout>    
+    </AdminLayout>     
   )
 }
 
