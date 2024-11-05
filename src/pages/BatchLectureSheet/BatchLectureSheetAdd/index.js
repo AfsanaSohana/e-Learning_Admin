@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 
 function BatchLectureSheetAdd() {
-    const [inputs, setInputs] = useState({ id: '',  course_id: '',  batch_id: '', subject_id: '', l_sheet_name: '', number_of_l_sheet: '',});
+    const [inputs, setInputs] = useState({ id: '', course_id: '', batch_id: '', subject_id: '', l_sheet_name: '', number_of_l_sheet: '',});
     const [course, setCourse] = useState([]);
     const [batch, setBatch] = useState([]);
     const [subject, setSubject] = useState([]);
@@ -29,8 +29,9 @@ function BatchLectureSheetAdd() {
             const courseResponse = await axios.get(`${process.env.REACT_APP_API_URL}/course`);
             const batchResponse = await axios.get(`${process.env.REACT_APP_API_URL}/batch`);
             const subjectResponse = await axios.get(`${process.env.REACT_APP_API_URL}/subject`);
-            setSubject(subjectResponse.data.data);
+            setCourse(courseResponse.data.data);
             setBatch(batchResponse.data.data);
+            setSubject(subjectResponse.data.data);
         } catch (error) {
             console.error("Error fetching relational data", error);
         }
