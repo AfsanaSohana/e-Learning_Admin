@@ -28,6 +28,8 @@ import CoursePlan from './pages/CoursePlan';
 import CoursePlanAdd from './pages/CoursePlan/CoursePlanAdd';
 import Attendence from './pages/Attendence';
 import AttendenceAdd from './pages/Attendence/AttendenceAdd';
+import BatchLectureSheet from './pages/BatchLectureSheet';
+import BatchLectureSheetAdd from './pages/BatchLectureSheet/BatchLectureSheetAdd';
 
 function App() {
   const isSignedIn = localStorage.getItem("access_token") || false;
@@ -73,6 +75,9 @@ function App() {
           <Route path="/attendence" element={<Attendence />} />
           <Route path="/attendence/add" element={<AttendenceAdd />} />
           <Route path="/attendence/edit/:id" element={<AttendenceAdd />} />
+          <Route path="/batchLectureSheet" element={<BatchLectureSheet />} />
+          <Route path="/batchLectureSheet/add" element={<BatchLectureSheetAdd />} />
+          <Route path="/batchLectureSheet/edit/:id" element={<BatchLectureSheetAdd />} />
           
           {/* <Route path={"/"} element={
             <Protected isSignedIn={isSignedIn} >

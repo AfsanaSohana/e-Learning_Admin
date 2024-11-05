@@ -52,11 +52,35 @@ function Sidebar() {
                                     
                                 </div>
                             </div>
+                             <div className="nav-item dropdown">
+                                <a href="#" className="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i className="fa fa-laptop me-2"></i>Student</a>
+                                <div className="dropdown-menu bg-transparent border-0">
+                                    <Link to='/student/add'className="dropdown-item"> Add New </Link>
+                                    <Link to='/student'className="dropdown-item"> list </Link>
+                                    
+                                </div>
+                            </div>
+                             <div className="nav-item dropdown">
+                                <a href="#" className="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i className="fa fa-laptop me-2"></i>Instructor </a>
+                                <div className="dropdown-menu bg-transparent border-0">
+                                    <Link to='/instructor/add'className="dropdown-item"> Add New </Link>
+                                    <Link to='/instructor'className="dropdown-item"> list </Link>
+                                    
+                                </div>
+                            </div>
                             <div className="nav-item dropdown">
                                 <a href="#" className="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i className="fa fa-laptop me-2"></i>Batch </a>
                                 <div className="dropdown-menu bg-transparent border-0">
                                     <Link to='/batch/add'className="dropdown-item"> Add New </Link>
                                     <Link to='/batch'className="dropdown-item"> list </Link>
+                                    
+                                </div>
+                            </div>
+                            <div className="nav-item dropdown">
+                                <a href="#" className="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i className="fa fa-laptop me-2"></i>Lecture Sheet </a>
+                                <div className="dropdown-menu bg-transparent border-0">
+                                    <Link to='/batchLectureSheet/add'className="dropdown-item"> Add New </Link>
+                                    <Link to='/batchLectureSheet'className="dropdown-item"> list </Link>
                                     
                                 </div>
                             </div>
@@ -76,22 +100,8 @@ function Sidebar() {
                                     
                                 </div>
                             </div>
-                            <div className="nav-item dropdown">
-                                <a href="#" className="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i className="fa fa-laptop me-2"></i>Instructor </a>
-                                <div className="dropdown-menu bg-transparent border-0">
-                                    <Link to='/instructor/add'className="dropdown-item"> Add New </Link>
-                                    <Link to='/instructor'className="dropdown-item"> list </Link>
-                                    
-                                </div>
-                            </div>
-                            <div className="nav-item dropdown">
-                                <a href="#" className="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i className="fa fa-laptop me-2"></i>Student</a>
-                                <div className="dropdown-menu bg-transparent border-0">
-                                    <Link to='/student/add'className="dropdown-item"> Add New </Link>
-                                    <Link to='/student'className="dropdown-item"> list </Link>
-                                    
-                                </div>
-                            </div>
+                           
+                           
                             <div className="nav-item dropdown">
                                 <a href="#" className="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i className="fa fa-laptop me-2"></i>Routine</a>
                                 <div className="dropdown-menu bg-transparent border-0">

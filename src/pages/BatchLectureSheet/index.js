@@ -4,7 +4,7 @@ import AdminLayout from '../../layout/adminLayout';
 import { Link } from 'react-router-dom';
 
 
-function Routine() {
+function BatchLectureSheet() {
 
     const[data, setData]=useState([]);
     useEffect(() => {
@@ -12,12 +12,12 @@ function Routine() {
     }, []);
 
     function getDatas() {
-        axios.get(`${process.env.REACT_APP_API_URL}/routine`).then(function(response) {
+        axios.get(`${process.env.REACT_APP_API_URL}/batchLectureSheet`).then(function(response) {
             setData(response.data.data);
         });
     }
     const deleteData = (id) => {
-        axios.delete(`${process.env.REACT_APP_API_URL}/routine/${id}`).then(function(response){
+        axios.delete(`${process.env.REACT_APP_API_URL}/batchLectureSheet/${id}`).then(function(response){
             getDatas();
         });
     }
@@ -26,32 +26,30 @@ function Routine() {
         <div className="row g-4">
             <div className="col-sm-12">
                 <div className="bg-light rounded h-100 p-4">
-                    <h6 className="mb-4">Routine</h6>
+                    <h6 className="mb-4">BatchLectureSheet</h6>
                     <table className="table">
                         <thead>
                             <tr>
-                                <th scope="col">ID</th>
-                                <th scope="col">batch Name</th>
-                                <th scope="col">Day</th>
-                                <th scope="col">Date</th>
-                                <th scope="col">Start</th>
-                                <th scope="col">End</th>
-                                <th scope="col">Note</th>
-                                <th scope="col">Action</th>
+                            
+                                        <th scope="col">Course</th> 
+                                        <th scope="col">Batch</th> 
+                                        <th scope="col">Subject</th>
+                                        <th scope="col">Lecture Sheet Name</th>
+                                        <th scope="col">number of Sheets</th>
+                                        <th scope="col">Action</th>
+
                             </tr>
                         </thead>
                         <tbody>
                                     {data && data.map((d, key) =>
                                         <tr key={d.id}>
-                                            <td>{d.id}</td>
+                                            <td>{d.course?.course_name}</td>
                                             <td>{d.batch?.batch_name}</td>
-                                            <td>{d.day_name}</td>
-                                            <td>{d.rdate}</td>
-                                            <td>{d.start_time}</td>
-                                            <td>{d.end_time}</td>
-                                            <td>{d.note}</td>
+                                            <td>{d.subject?.subject_name}</td>
+                                            <td>{d.l_sheet_name}</td>
+                                            <td>{d.number_of_l_sheet}</td>
                                             <td>
-                                                <Link to={`/routine/edit/${d.id}`} className='btn btn-info' >Edit</Link>
+                                                <Link to={`/batchLectureSheet/edit/${d.id}`} className='btn btn-info' >Edit</Link>
                                                 <button type='button' onClick={() => deleteData(d.id)} className='btn btn-danger'>Delete</button>
                                             </td>
                                         </tr>
@@ -65,4 +63,4 @@ function Routine() {
   )
 }
 
-export default Routine
+export default BatchLectureSheet
