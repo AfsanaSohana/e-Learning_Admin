@@ -100,7 +100,7 @@ function InstructorAdd() {
                                                 <div className="col-12">
                                                     <div className="form-group">
                                                     <label for="email-id-vertical">Designation</label>
-                                                    <input type="text" id="designation" className="form-control" defaultValue={inputs.designation} name="designation" onChange={handleChange} placeholder="inatructor"/>
+                                                    <input type="text" id="designation" className="form-control" defaultValue={inputs.designation} name="designation" onChange={handleChange} placeholder="instructor"/>
                                                     </div>
                                                 </div>
                                                 <div className="col-12">
@@ -136,7 +136,7 @@ function InstructorAdd() {
                                                 <div className="col-12">
                                                     <div className="form-group">
                                                     <label for="email-id-vertical">Photo</label>
-                                                    <input type="file" id="photo" className="form-control" defaultValue={inputs.photo} multiple name="photo" onChange={handleChange} accept='image/*'/>
+                                                    <input type="file" id="photo" className="form-control" defaultValue={inputs.photo} multiple name="photo" onChange={handelFile} accept='image/*'/>
                                                     </div>
                                                 </div>
                                                 
