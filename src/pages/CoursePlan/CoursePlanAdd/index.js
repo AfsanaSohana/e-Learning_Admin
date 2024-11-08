@@ -6,11 +6,14 @@ import {useParams} from "react-router-dom";
 
 function CoursePlanAdd() {
       const [inputs, setInputs] = useState({id:'',course_id:'',subject_id:'',title:'',document:''});
-          const [course, setCourse] = useState([]);
+        const [course, setCourse] = useState([]);
         const [subject, setSubject] = useState([]);
-      
-        const navigate=useNavigate();
+        // const [file, setFile] = useState(null); /**document */
+        // const [status, setStatus] = useState("");/**document */
+        const navigate=useNavigate(); 
         const {id} = useParams();
+     
+       
     
     function getDatas(){
         axios.get(`${process.env.REACT_APP_API_URL}/coursePlan/${id}`).then(function(response) {
@@ -35,6 +38,9 @@ function CoursePlanAdd() {
         }
          getRelational()
     }, []);
+    // const handleFileChange = (e) => {  /**document */
+    //     setFile(e.target.files[0]);
+    // };
 
     const handleChange = (event) => {
         const name = event.target.name;
@@ -45,15 +51,28 @@ function CoursePlanAdd() {
     const handleSubmit = async(e) => {
         e.preventDefault();
         console.log(inputs)
-        
-        try{
+
+        // const formData = new FormData(); /**document */
+        // formData.append('document', file);   
+    
+        // for (let i = 0; i < selectedfile.length; i++) {
+        //     formData.append('files[]', selectedfile[i])
+        // }
+
+        // for (const property in inputs) {
+        //     formData.append(property, inputs[property])
+        // }
+     
+       
+            /**document */
             let apiurl='';
             if(inputs.id!=''){
                 apiurl=`/coursePlan/edit/${inputs.id}`;
             }else{
                 apiurl=`/coursePlan/create`;
             }
-            
+            // let res = await axios.post(apiurl, formData) /**document */
+
             let response= await axios({
                 method: 'post',
                 responsiveTYpe: 'json',
@@ -63,10 +82,10 @@ function CoursePlanAdd() {
             console.log(response)
             navigate('/coursePlan')
         } 
-        catch(e){
-            console.log(e);
-        }
-    }
+        // catch(e){
+        //     console.log(e);
+        // }
+
   return (
     
      <AdminLayout>
@@ -132,7 +151,19 @@ function CoursePlanAdd() {
                                                 <div className="col-12">
                                                     <div className="form-group">
                                                     <label for="batch_type">Document</label>
-                                                    <input type="text" id="document" className="form-control" defaultValue={inputs.document} name="document" onChange={handleChange} placeholder=" "/>
+                                                    <input type="file" id="document" className="form-control" defaultValue={inputs.document} name="document" onChange={handleFileChange} placeholder=""/>
+                                                    </div>
+                                                </div>
+                                                <div className="col-12">
+                                                    <div className="form-group">
+                                                    <label for="batch_type">Model test </label>
+                                                    <input type="text" id="model_test" className="form-control" defaultValue={inputs.model_test} name="model_test" onChange={handleChange} placeholder=""/>
+                                                    </div>
+                                                </div>
+                                                <div className="col-12">
+                                                    <div className="form-group">
+                                                    <label for="batch_type">model test sheet</label>
+                                                    <input type="file" id="model_sheet" className="form-control" defaultValue={inputs.model_sheet} name="model_sheet" onChange={handleChange} placeholder=" বাংলা ১ম অধ্যায় মডেল টেস্ট"/>
                                                     </div>
                                                 </div>
                                                 

@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import {useParams} from "react-router-dom";
 
 function BatchAdd() {
-      const [inputs, setInputs] = useState({id:'',batch_name:'',batch_type:'',duration:'',instructor_id:'',course_id:''});
+      const [inputs, setInputs] = useState({id:'',batch_name:'',batch_type:'',duration:'',instructor_id:'',course_id:'',number_of_subject:'',daily_live:'',weekly_exam:'',live_link:''});
         const [instructor, setInstructor] = useState([]);
         const [course, setCourse] = useState([]);
         const navigate=useNavigate();
@@ -142,14 +142,38 @@ function BatchAdd() {
                                                     <label for="batch_name">Number of Student</label>
                                                     <input type="text" id="number_of_student" className="form-control" defaultValue={inputs.number_of_student} name="number_of_student" onChange={handleChange} placeholder="20"/>
                                                     </div>
-                                                </div> <div className="col-12">
+                                                </div> 
+                                                <div className="col-12">
                                                     <div className="form-group">
                                                     <label for="batch_name">Batch Details</label>
                                                     <input type="text" id="batch_details" className="form-control" defaultValue={inputs.batch_details} name="batch_details" onChange={handleChange} placeholder="Enter batch name"/>
                                                     </div>
                                                 </div>
-                                                
-                                                
+                                                <div className="col-12">
+                                                    <div className="form-group">
+                                                    <label for="batch_name">Number of Subject</label>
+                                                    <input type="text" id="number_of_subject" className="form-control" defaultValue={inputs.number_of_subject} name="number_of_subject" onChange={handleChange} placeholder="Enter batch name"/>
+                                                    </div>
+                                                </div>
+                                                <div className="col-12">
+                                                    <div className="form-group">
+                                                    <label for="batch_name">Daily live</label>
+                                                    <input type="text" id="daily_live" className="form-control" defaultValue={inputs.daily_live} name="daily_live" onChange={handleChange} placeholder="Enter batch name"/>
+                                                    </div>
+                                                </div>
+                                                <div className="col-12">
+                                                    <div className="form-group">
+                                                    <label for="batch_name">Weekly exam</label>
+                                                    <input type="text" id="weekly_exam" className="form-control" defaultValue={inputs.weekly_exam} name="weekly_exam" onChange={handleChange} placeholder="Enter batch name"/>
+                                                    </div>
+                                                </div>
+                                                <div className="col-12">
+                                                    <div className="form-group">
+                                                    <label for="batch_name">live link</label>
+                                                    <input type="text" id="live_link" className="form-control" defaultValue={inputs.live_link} name="live_link" onChange={handleChange} placeholder="zoom link url"/>
+                                                    </div>
+                                                </div>
+
                                                 <div className="col-12 d-flex justify-content-end">
                                                     <button type="submit" className="btn btn-primary mr-1 mb-1">Submit</button>
                                                     <button type="reset" className="btn btn-light-secondary mr-1 mb-1">Reset</button>

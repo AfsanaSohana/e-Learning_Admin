@@ -52,7 +52,10 @@ function Batch() {
                                             <td>{d.course?.course_name}</td>
                                              <td>{d.number_of_student}</td>
                                              <td>{d.batch_details}</td>
-                                           
+                                             <td>{d.number_of_subject}</td>
+                                             <td>{d.daily_live}</td>
+                                             <td>{d.weekly_exam}</td>
+                                             <td>{d.live_link}</td>
                                             <td>
                                                 <Link to={`/batch/edit/${d.id}`} className='btn btn-info' >Edit</Link>
                                                 <button type='button' onClick={() => deleteData(d.id)} className='btn btn-danger'>Delete</button>

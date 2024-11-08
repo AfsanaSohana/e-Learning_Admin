@@ -46,7 +46,15 @@ function CoursePlan() {
                                             <td>{d.course?.course_name}</td>
                                             <td>{d.subject?.subject_name}</td>
                                             <td>{d.title}</td>
-                                            <td>{d.document}</td> 
+                                            <td>
+                                                {/* {
+                                                    d.document && d.document.split(',').map((src, i) => (
+                                                        <img key={i} src={`${process.env.REACT_APP_BACKEND_URL}/coursePlanadd/${src}`} alt="coursePlan" />
+                                                    ))
+                                                } */}
+                                            </td>
+                                            <td>{d.model_test}</td> 
+                                            <td>{d.model_sheet}</td> 
                                             <td>
                                                 <Link to={`/coursePlan/edit/${d.id}`} className='btn btn-info' >Edit</Link>
                                                 <button type='button' onClick={() => deleteData(d.id)} className='btn btn-danger'>Delete</button>
