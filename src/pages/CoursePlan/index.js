@@ -1,26 +1,25 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import axios from '../../components/axios';
 import AdminLayout from '../../layout/adminLayout';
 import { Link } from 'react-router-dom';
 
 
 function CoursePlan() {
 
-    const[data, setData]=useState([]);
-    
+     const[data, setData]=useState([]);
     useEffect(() => {
         getDatas();
     }, []);
 
-    function getDatas() {
-        axios.get(`${process.env.REACT_APP_API_URL}/coursePlan`).then(function(response) {
-            setData(response.data.data);
-        });
+    const getDatas = async (e) => {
+        let res = await axios.get(`/coursePlan`)
+        setData(res.data.data);
+
     }
-    const deleteData = (id) => {
-        axios.delete(`${process.env.REACT_APP_API_URL}/coursePlan/${id}`).then(function(response){
-            getDatas();
-        });
+    const deleteData = async (id) => {
+        let res = await axios.delete(`/coursePlan/${id}`)
+        getDatas();
+
     }
   return (
     <AdminLayout>
@@ -47,14 +46,18 @@ function CoursePlan() {
                                             <td>{d.subject?.subject_name}</td>
                                             <td>{d.title}</td>
                                             <td>
-                                                {/* {
+                                                {
                                                     d.document && d.document.split(',').map((src, i) => (
                                                         <img key={i} src={`${process.env.REACT_APP_BACKEND_URL}/coursePlanadd/${src}`} alt="coursePlan" />
                                                     ))
-                                                } */}
+                                                }
                                             </td>
                                             <td>{d.model_test}</td> 
-                                            <td>{d.model_sheet}</td> 
+                                            <td>  {
+                                                    d.model_sheet && d.model_sheet.split(',').map((src, i) => (
+                                                        <img key={i} src={`${process.env.REACT_APP_BACKEND_URL}/coursePlanadd/${src}`} alt="coursePlan" />
+                                                    ))
+                                                }</td> 
                                             <td>
                                                 <Link to={`/coursePlan/edit/${d.id}`} className='btn btn-info' >Edit</Link>
                                                 <button type='button' onClick={() => deleteData(d.id)} className='btn btn-danger'>Delete</button>
