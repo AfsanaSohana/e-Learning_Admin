@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import {useParams} from "react-router-dom";
 
 function BatchAdd() {
-      const [inputs, setInputs] = useState({id:'',batch_name:'',batch_type:'',duration:'',instructor_id:'',course_id:'',number_of_subject:'',daily_live:'',weekly_exam:'',live_link:''});
+      const [inputs, setInputs] = useState({id:'',batch_name:'',batch_type:'',duration:'',instructor_id:'',course_id:'',number_of_subject:'',daily_live:'',weekly_exam:'',live_link:'',price:'',discount_price:''});
         const [instructor, setInstructor] = useState([]);
         const [course, setCourse] = useState([]);
         const navigate=useNavigate();
@@ -171,6 +171,19 @@ function BatchAdd() {
                                                     <div className="form-group">
                                                     <label for="batch_name">live link</label>
                                                     <input type="text" id="live_link" className="form-control" defaultValue={inputs.live_link} name="live_link" onChange={handleChange} placeholder="zoom link url"/>
+                                                    </div>
+                                                </div>
+                                               
+                                                <div className="col-12">
+                                                    <div className="form-group">
+                                                    <label for="price">course price</label>
+                                                    <input type="text" id="price" className="form-control" defaultValue={inputs.price} name="price" onChange={handleChange} placeholder="1000"/>
+                                                    </div>
+                                                </div>
+                                                <div className="col-12">
+                                                    <div className="form-group">
+                                                    <label for="discount_price">Discount price</label>
+                                                    <input type="text" id="discount_price" className="form-control" defaultValue={inputs.discount_price} name="discount_price" onChange={handleChange} placeholder="1000"/>
                                                     </div>
                                                 </div>
 

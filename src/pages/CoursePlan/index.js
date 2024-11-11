@@ -34,7 +34,7 @@ function CoursePlan() {
                                 <th scope="col">Course Name</th>
                                 <th scope="col">Subject Name</th>
                                 <th scope="col">Description</th>
-                                <th scope="col">Document </th>
+                                <th scope="col">Sylabus </th>
                                 <th scope="col">Action</th>
                             </tr>
                         </thead>

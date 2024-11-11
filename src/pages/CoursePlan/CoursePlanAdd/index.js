@@ -38,16 +38,21 @@ function CoursePlanAdd() {
   };
 
   const handleChange = (event) => {
-    const { name, value } = event.target;
-    setInputs((values) => ({ ...values, [name]: value }));
-  };
+    const name = event.target.name;
+    const value = event.target.value;
+    setInputs(values => ({...values, [name]: value}));
+}
 
-  const handleFileChange = (e) => {
+  const handleDocumentChange = (e) => {
+    selectedDocument(e.target.files);
+  };
+  const handleModelSheetChange = (e) => {
     selectedDocument(e.target.files);
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
+    console.log(inputs)
     const formData = new FormData();
       // Append photos to formData
             formData.append('document', selectedDocument[0]);
@@ -175,13 +180,13 @@ function CoursePlanAdd() {
                           </div>
                           <div className="col-12">
                             <div className="form-group">
-                              <label htmlFor="document">Document</label>
+                              <label htmlFor="document">Syllabus</label>
                               <input
                                 type="file"
                                 id="document"
                                 className="form-control"
                                 name="document"
-                                onChange={handleFileChange}
+                                onChange={handleDocumentChange}
                               />
                             </div>
                           </div>
@@ -207,7 +212,7 @@ function CoursePlanAdd() {
                                 id="model_sheet"
                                 className="form-control"
                                 name="model_sheet"
-                                onChange={handleFileChange}
+                                onChange={handleModelSheetChange}
                                 placeholder="Upload model test sheet"
                               />
                             </div>
