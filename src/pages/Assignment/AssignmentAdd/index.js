@@ -5,9 +5,10 @@ import { useNavigate } from 'react-router-dom';
 import {useParams} from "react-router-dom";
 
 function AssignmentAdd() {
-      const [inputs, setInputs] = useState({id:'',assignment_name:'',subject_id:'',course_id:'',document:'',date:''});
+      const [inputs, setInputs] = useState({id:'',assignment_name:'',subject_id:'',course_id:'',batch_id:'',document:'',date:''});
         const [subject, setSubject] = useState([]);
         const [course, setCourse] = useState([]);
+        const [batch, setBatch] = useState([]);
         const navigate=useNavigate();
         const {id} = useParams();
     
@@ -22,6 +23,10 @@ function AssignmentAdd() {
         });
         axios.get(`${process.env.REACT_APP_API_URL}/course`).then(function(response) {
             setCourse(response.data.data);
+         
+        });
+        axios.get(`${process.env.REACT_APP_API_URL}/batch`).then(function(response) {
+            setBatch(response.data.data);
          
         });
         
@@ -106,7 +111,7 @@ function AssignmentAdd() {
                                                                 <select  id="subject_id" className="form-control" defaultValue={inputs.subject_id} name="subject_id" onChange={handleChange} >
                                                                     <option value="">Select subject</option>
                                                                             {subject.map((d, key) =>
-                                                                                <option value={d.id}>{d.subject_id}</option>
+                                                                                <option value={d.id}>{d.subject_name}</option>
                                                                             )}
                                                                 </select>
                                                             }
@@ -119,7 +124,20 @@ function AssignmentAdd() {
                                                             <select type="text" id="course_id" className="form-control" defaultValue={inputs.course_id} name="course_id" onChange={handleChange} placeholder="Enter class name">
                                                                 <option value="">Select Course</option>
                                                                     {course.map((d, key) =>
-                                                                        <option value={d.id}>{d.course_id}</option>
+                                                                        <option value={d.id}>{d.course_name}</option>
+                                                                    )}
+                                                            </select>
+                                                      }
+                                                    </div>
+                                                </div>
+                                                <div className="col-12">
+                                                    <div className="form-group">
+                                                    <label for="course"> Batch </label>
+                                                      {batch.length > 0 &&
+                                                            <select type="text" id="batch_id" className="form-control" defaultValue={inputs.batch_id} name="batch_id" onChange={handleChange} placeholder="Enter class name">
+                                                                <option value="">Select batch</option>
+                                                                    {course.map((d, key) =>
+                                                                        <option value={d.id}>{d.batch_name}</option>
                                                                     )}
                                                             </select>
                                                       }
