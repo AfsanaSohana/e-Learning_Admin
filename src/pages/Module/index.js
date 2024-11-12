@@ -30,8 +30,6 @@ function Module() {
                     <table className="table">
                         <thead>
                             <tr>
-                            
-                                        <th scope="col">Module Name</th>
                                           <th scope="col">Course</th>
                                         <th scope="col">Batch</th>
                                         <th scope="col">Module1</th>

@@ -5,8 +5,8 @@ import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 
 function ModuleAdd() {
-    const [inputs, setInputs] = useState({ id: '', exam_name: '', subject_id: '', batch_id: '',duration: '', start_time: '', end_time: '',date:'' });
-    const [subject, setSubject] = useState([]);
+    const [inputs, setInputs] = useState({ id: '', course_id: '', batch_id: '',module_1: '', module_2: '', module_3: '',module_4:'' });
+    const [course, setCourse] = useState([]);
     const [batch, setBatch] = useState([]);
     const navigate = useNavigate();
     const { id } = useParams();
@@ -72,23 +72,15 @@ function ModuleAdd() {
                                 <form className="form form-vertical" onSubmit={handleSubmit}>
                                     <div className="form-body">
                                         <div className="row">
-                                            <div className="col-12">
+                                             <div className="col-12">
                                                 <div className="form-group">
-                                                    <label htmlFor="exam_name">Module Name</label>
-                                                    <input type="text" id="exam_name" className="form-control"
-                                                        value={inputs.exam_name} name="exam_name" onChange={handleChange} placeholder="Enter module name" />
-                                                </div>
-                                            </div>
-
-                                            <div className="col-12">
-                                                <div className="form-group">
-                                                    <label htmlFor="subject_id">Subject</label>
-                                                    {subject.length > 0 ? (
-                                                        <select id="subject_id" className="form-control"
-                                                            value={inputs.subject_id} name="subject_id" onChange={handleChange}>
-                                                            <option value="">Select Subject</option>
-                                                            {subject.map((s) => (
-                                                                <option key={s.id} value={s.id}>{s.subject_name}</option>
+                                                    <label htmlFor="course">Course</label>
+                                                    {course.length > 0 ? (
+                                                        <select id="course_id" className="form-control"
+                                                            value={inputs.course_id} name="course_id" onChange={handleChange}>
+                                                            <option value="">Select </option>
+                                                            {course.map((s) => (
+                                                                <option key={s.id} value={s.id}>{s.course_name}</option>
                                                             ))}
                                                         </select>
                                                     ) : (
@@ -116,34 +108,33 @@ function ModuleAdd() {
 
                                             <div className="col-12">
                                                 <div className="form-group">
-                                                    <label htmlFor="duration">Duration</label>
-                                                    <input type="text" id="duration" className="form-control"
-                                                        value={inputs.duration} name="duration" onChange={handleChange} />
+                                                    <label htmlFor="module_1">Module-1</label>
+                                                    <input type="text" id="module_1" className="form-control"
+                                                        value={inputs.module_1} name="module_1" onChange={handleChange} />
+                                                </div>
+                                            </div>
+                                            <div className="col-12">
+                                                <div className="form-group">
+                                                    <label htmlFor="module_2">Module-2</label>
+                                                    <input type="text" id="module_2" className="form-control"
+                                                        value={inputs.module_2} name="module_2" onChange={handleChange} />
+                                                </div>
+                                            </div>
+                                            <div className="col-12">
+                                                <div className="form-group">
+                                                    <label htmlFor="module_3">Module-3</label>
+                                                    <input type="text" id="module_3" className="form-control"
+                                                        value={inputs.module_3} name="module_3" onChange={handleChange} />
+                                                </div>
+                                            </div>
+                                            <div className="col-12">
+                                                <div className="form-group">
+                                                    <label htmlFor="module_4">Module-3</label>
+                                                    <input type="text" id="module_4" className="form-control"
+                                                        value={inputs.module_4} name="module_4" onChange={handleChange} />
                                                 </div>
                                             </div>
 
-                                            <div className="col-12">
-                                                <div className="form-group">
-                                                    <label htmlFor="start_time">Start time</label>
-                                                    <input type="time" id="start_time" className="form-control"
-                                                        value={inputs.start_time} name="start_time" onChange={handleChange} />
-                                                </div>
-                                            </div>
-
-                                            <div className="col-12">
-                                                <div className="form-group">
-                                                    <label htmlFor="end_time">End time</label>
-                                                    <input type="time" id="end_time" className="form-control"
-                                                        value={inputs.end_time} name="end_time" onChange={handleChange} />
-                                                </div>
-                                            </div>
-                                            <div className="col-12">
-                                                <div className="form-group">
-                                                    <label htmlFor="end_time">Date</label>
-                                                    <input type="date" id="date" className="form-control"
-                                                        value={inputs.date} name="date" onChange={handleChange} />
-                                                </div>
-                                            </div>
 
                                            
 

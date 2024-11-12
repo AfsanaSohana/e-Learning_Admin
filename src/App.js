@@ -32,6 +32,8 @@ import BatchLectureSheet from './pages/BatchLectureSheet';
 import BatchLectureSheetAdd from './pages/BatchLectureSheet/BatchLectureSheetAdd';
 import Assignment from './pages/Assignment';
 import AssignmentAdd from './pages/Assignment/AssignmentAdd';
+import Module from './pages/Module';
+import ModuleAdd from './pages/Module/ModuleAdd';
 
 function App() {
   const isSignedIn = localStorage.getItem("access_token") || false;
@@ -82,6 +84,10 @@ function App() {
           <Route path="/batchLectureSheet/edit/:id" element={<BatchLectureSheetAdd />} />
           <Route path="/assignment" element={<Assignment />} />
           <Route path="/assignment/add" element={<AssignmentAdd />} />
+          <Route path="/assignment/edit/:id" element={<AssignmentAdd />} />
+          <Route path="/module" element={<Module />} />
+          <Route path="/module/add" element={<ModuleAdd />} />
+          <Route path="/module/edit/:id" element={<ModuleAdd />} />
           
           {/* <Route path={"/"} element={
             <Protected isSignedIn={isSignedIn} >
