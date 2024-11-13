@@ -44,10 +44,10 @@ function CoursePlanAdd() {
 }
 
   const handleDocumentChange = (e) => {
-    selectedDocument(e.target.files);
+    setSelectedDocument(e.target.files);
   };
   const handleModelSheetChange = (e) => {
-    selectedDocument(e.target.files);
+    setselectedModelSheet(e.target.files);
   };
 
   const handleSubmit = async(e) => {
@@ -55,48 +55,53 @@ function CoursePlanAdd() {
     console.log(inputs)
     const formData = new FormData();
       // Append photos to formData
-            formData.append('document', selectedDocument[0]);
-            formData.append('model_sheet', selectedModelSheet[0]);
+      for (let i = 0; i < selectedDocument.length; i++) {
+        formData.append('document[]', selectedDocument[i])
+      }
+      for (let i = 0; i < selectedModelSheet.length; i++) {
+        formData.append('model_sheet[]', selectedModelSheet[i])
+      }
+      // formData.append('document', selectedDocument[0]);
+      // formData.append('model_sheet', selectedModelSheet[0]);
         
         
-        // Append other form inputs to formData
-        for (const user in inputs) {
-            formData.append(user, inputs[user]);
+      // Append other form inputs to formData
+      for (const user in inputs) {
+        formData.append(user, inputs[user]);
+      }
+      //
+
+      // for (let i = 0; i < selectedFile.length; i++) {
+      //   formData.append('files[]', selectedFile[i]);
+      // }
+      for (const property in inputs) {
+        formData.append(property, inputs[property]);
+      }
+
+      try{
+        let apiurl='';
+        if(inputs.id!=''){
+          apiurl=`/coursePlan/edit/${inputs.id}`;
+        }else{
+          apiurl=`/coursePlan/create`;
         }
-        //
-
-    // for (let i = 0; i < selectedFile.length; i++) {
-    //   formData.append('files[]', selectedFile[i]);
-    // }
-    for (const property in inputs) {
-      formData.append(property, inputs[property]);
-    }
-
-       try{
-                let apiurl='';
-                if(inputs.id!=''){
-                    apiurl=`/coursePlan/edit/${inputs.id}`;
-                }else{
-                    apiurl=`/coursePlan/create`;
-                }
                 
-                let response= await axios({
-                    method: 'post',
-                    responsiveTYpe: 'json',
-                    url: `${process.env.REACT_APP_API_URL}${apiurl}`,
-                   
-                    // data: inputs
-                    //for photo
-                    data: formData,
-                    headers: {
-                        'Content-Type': 'multipart/form-data',
-                    }
-                });//
-                navigate('/coursePlan/coursePlanList')
-            } 
-            catch(e){
-                console.log(e);
+        let response= await axios({
+            method: 'post',
+            responsiveTYpe: 'json',
+            url: `${process.env.REACT_APP_API_URL}${apiurl}`,
+            
+            // data: inputs
+            //for photo
+            data: formData,
+            headers: {
+                'Content-Type': 'multipart/form-data',
             }
+        });//
+        navigate('/coursePlan')
+      }catch(e){
+        console.log(e);
+      }
   };
 
   return (

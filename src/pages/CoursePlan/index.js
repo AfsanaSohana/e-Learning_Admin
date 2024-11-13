@@ -27,45 +27,39 @@ function CoursePlan() {
             <div className="col-sm-12">
                 <div className="bg-light rounded h-100 p-4">
                     <h6 className="mb-4">CoursePlan</h6>
-                    <table className="table">
-                        <thead>
-                            <tr>
-                                <th scope="col">ID</th>
-                                <th scope="col">Course Name</th>
-                                <th scope="col">Subject Name</th>
-                                <th scope="col">Description</th>
-                                <th scope="col">Sylabus </th>
-                                <th scope="col">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                                    {data && data.map((d, key) =>
+                    <div className="table-responsive"> {/* Add this wrapper */}
+                            <table className="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">ID</th>
+                                        <th scope="col">Course Name</th>
+                                        <th scope="col">Subject Name</th>
+                                        <th scope="col">Title</th>
+                                        <th scope="col">Syllabus</th>
+                                        <th scope="col">Model Test</th>
+                                        <th scope="col">Model Sheet</th>
+                                        <th scope="col">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {data && data.map((d) =>
                                         <tr key={d.id}>
                                             <td>{d.id}</td>
                                             <td>{d.course?.course_name}</td>
                                             <td>{d.subject?.subject_name}</td>
                                             <td>{d.title}</td>
+                                            <td>{d.document}</td>
+                                            <td>{d.model_test}</td>
+                                            <td>{d.model_sheet}</td>
                                             <td>
-                                                {
-                                                    d.document && d.document.split(',').map((src, i) => (
-                                                        <img key={i} src={`${process.env.REACT_APP_BACKEND_URL}/coursePlanadd/${src}`} alt="coursePlan" />
-                                                    ))
-                                                }
-                                            </td>
-                                            <td>{d.model_test}</td> 
-                                            <td>  {
-                                                    d.model_sheet && d.model_sheet.split(',').map((src, i) => (
-                                                        <img key={i} src={`${process.env.REACT_APP_BACKEND_URL}/coursePlanadd/${src}`} alt="coursePlan" />
-                                                    ))
-                                                }</td> 
-                                            <td>
-                                                <Link to={`/coursePlan/edit/${d.id}`} className='btn btn-info' >Edit</Link>
+                                                <Link to={`/coursePlan/edit/${d.id}`} className='btn btn-info'>Edit</Link>
                                                 <button type='button' onClick={() => deleteData(d.id)} className='btn btn-danger'>Delete</button>
                                             </td>
                                         </tr>
                                     )}
-                                    </tbody>
-                    </table>
+                                </tbody>
+                            </table>
+                        </div>
                 </div>
             </div>
         </div>
