@@ -48,6 +48,9 @@ function AssignmentAdd() {
     const handleSubmit = async(e) => {
         e.preventDefault();
         console.log(inputs)
+        const handelFile = (e) => {
+            setSelectedFile(e.target.files)
+        }
         
         try{
             let apiurl='';

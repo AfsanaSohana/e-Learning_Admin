@@ -48,6 +48,9 @@ function BatchLectureSheet() {
                                             <td>{d.subject?.subject_name}</td>
                                             <td>{d.l_sheet_name}</td>
                                             <td>{d.number_of_l_sheet}</td>
+                                            <td>{d.module?.module_id}</td>
+                                            <td>{d.assignment?.assignment_id}</td>
+                                            <td>{d.exam?.exam_id}</td>
                                             <td>
                                                 <Link to={`/batchLectureSheet/edit/${d.id}`} className='btn btn-info' >Edit</Link>
                                                 <button type='button' onClick={() => deleteData(d.id)} className='btn btn-danger'>Delete</button>

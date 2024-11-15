@@ -5,10 +5,13 @@ import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 
 function BatchLectureSheetAdd() {
-    const [inputs, setInputs] = useState({ id: '', course_id: '', batch_id: '', subject_id: '', l_sheet_name: '', number_of_l_sheet: '',});
+    const [inputs, setInputs] = useState({ id: '', course_id: '', batch_id: '', subject_id: '', l_sheet_name: '', number_of_l_sheet: '',module_id:'',assignment_id:'',module_id:''});
     const [course, setCourse] = useState([]);
     const [batch, setBatch] = useState([]);
     const [subject, setSubject] = useState([]);
+    const [module, setModule] = useState([]);
+    const [assignment, setAssignment] = useState([]);
+    const [exam, setExam] = useState([]);
     const navigate = useNavigate();
     const { id } = useParams();
 
@@ -29,9 +32,15 @@ function BatchLectureSheetAdd() {
             const courseResponse = await axios.get(`${process.env.REACT_APP_API_URL}/course`);
             const batchResponse = await axios.get(`${process.env.REACT_APP_API_URL}/batch`);
             const subjectResponse = await axios.get(`${process.env.REACT_APP_API_URL}/subject`);
+            const moduleResponse = await axios.get(`${process.env.REACT_APP_API_URL}/module`);
+            const assignmentResponse = await axios.get(`${process.env.REACT_APP_API_URL}/assignment`);
+            const examResponse = await axios.get(`${process.env.REACT_APP_API_URL}/exam`);
             setCourse(courseResponse.data.data);
             setBatch(batchResponse.data.data);
             setSubject(subjectResponse.data.data);
+            setModule(moduleResponse.data.data);
+           setAssignment(assignmentResponse.data.data);
+           setExam(examResponse.data.data);
         } catch (error) {
             console.error("Error fetching relational data", error);
         }
@@ -137,6 +146,54 @@ function BatchLectureSheetAdd() {
                                                     <label htmlFor="sheets">Number of sheet</label>
                                                     <input type="text" id="number_of_l_sheet" className="form-control"
                                                         value={inputs.number_of_l_sheet} name="number_of_l_sheet" onChange={handleChange} />
+                                                </div>
+                                            </div>
+                                            <div className="col-12">
+                                                <div className="form-group">
+                                                    <label htmlFor="module_id">Module</label>
+                                                    {module.length > 0 ? (
+                                                        <select id="module_id" className="form-control"
+                                                            value={inputs.module_id} name="module_id" onChange={handleChange}>
+                                                            <option value="">Select Subject</option>
+                                                            {module.map((s) => (
+                                                                <option key={s.id} value={s.id}>{s.id}</option>
+                                                            ))}
+                                                        </select>
+                                                    ) : (
+                                                        <p>Loading module...</p>
+                                                    )}
+                                                </div>
+                                            </div>
+                                            <div className="col-12">
+                                                <div className="form-group">
+                                                    <label htmlFor="module_id">Assignment</label>
+                                                    {assignment.length > 0 ? (
+                                                        <select id="assignment_id" className="form-control"
+                                                            value={inputs.assignment_id} name="assignment_id" onChange={handleChange}>
+                                                            <option value="">Select Subject</option>
+                                                            {assignment.map((s) => (
+                                                                <option key={s.id} value={s.id}>{s.assignment_name}</option>
+                                                            ))}
+                                                        </select>
+                                                    ) : (
+                                                        <p>Loading assignment...</p>
+                                                    )}
+                                                </div>
+                                            </div>
+                                            <div className="col-12">
+                                                <div className="form-group">
+                                                    <label htmlFor="exam">Exam</label>
+                                                    {exam.length > 0 ? (
+                                                        <select id="exam_id" className="form-control"
+                                                            value={inputs.exam_id} name="exam_id" onChange={handleChange}>
+                                                            <option value="">Select Subject</option>
+                                                            {exam.map((s) => (
+                                                                <option key={s.id} value={s.id}>{s.exam_id}</option>
+                                                            ))}
+                                                        </select>
+                                                    ) : (
+                                                        <p>Loading exam...</p>
+                                                    )}
                                                 </div>
                                             </div>
 
