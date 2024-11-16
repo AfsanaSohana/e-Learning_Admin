@@ -5,7 +5,8 @@ import { useNavigate } from 'react-router-dom';
 import {useParams} from "react-router-dom";
 
 function AssignmentAdd() {
-      const [inputs, setInputs] = useState({id:'',assignment_name:'',subject_id:'',course_id:'',batch_id:'',document:'',date:''});
+        const [inputs, setInputs] = useState({id:'',assignment_name:'',subject_id:'',course_id:'',batch_id:'',document:'',date:''});
+        const [selectedfile, setSelectedFile] = useState([]);
         const [subject, setSubject] = useState([]);
         const [course, setCourse] = useState([]);
         const [batch, setBatch] = useState([]);
@@ -36,7 +37,6 @@ function AssignmentAdd() {
         if(id){
             getDatas();
         }
-         getRelational()
     }, []);
 
     const handleChange = (event) => {
@@ -45,28 +45,37 @@ function AssignmentAdd() {
         setInputs(values => ({...values, [name]: value}));
     }
 
-    const handleSubmit = async(e) => {
-        e.preventDefault();
-        console.log(inputs)
-        // const handelFile = (e) => {
-        //     setSelectedFile(e.target.files)
-        // }
-        
+    // const handleSubmit = async(e) => {
+    //     e.preventDefault();
+    //     console.log(inputs)
+    
+
+        const handelFile = (e) => {
+            setSelectedFile(e.target.files)
+        }
+        const handleSubmit = async (e) => {
+            e.preventDefault();
+
+            const formData = new FormData();
+    
+            for (let i = 0; i < selectedfile.length; i++) {
+                formData.append('files[]', selectedfile[i])
+            }
+    
+            for (const property in inputs) {
+                formData.append(property, inputs[property])
+            }
+         
         try{
             let apiurl='';
             if(inputs.id!=''){
-                apiurl=`/assignment/edit/${inputs.id}`;
+                apiurl=`/assignment/${inputs.id}`;
             }else{
                 apiurl=`/assignment/create`;
             }
+            let res = await axios.post(apiurl, formData)
             
-            let response= await axios({
-                method: 'post',
-                responsiveTYpe: 'json',
-                url: `${process.env.REACT_APP_API_URL}${apiurl}`,
-                data: inputs
-            });
-            console.log(response)
+            console.log(res)
             navigate('/assignment')
         } 
         catch(e){
@@ -139,7 +148,7 @@ function AssignmentAdd() {
                                                       {batch.length > 0 &&
                                                             <select type="text" id="batch_id" className="form-control" defaultValue={inputs.batch_id} name="batch_id" onChange={handleChange} placeholder="Enter class name">
                                                                 <option value="">Select batch</option>
-                                                                    {course.map((d, key) =>
+                                                                    {batch.map((d, key) =>
                                                                         <option value={d.id}>{d.batch_name}</option>
                                                                     )}
                                                             </select>
@@ -150,7 +159,7 @@ function AssignmentAdd() {
                                                 <div className="col-12">
                                                     <div className="form-group">
                                                     <label for="batch_type"> Document</label>
-                                                    <input type="file" id="document" className="form-control" defaultValue={inputs.document} name="document" onChange={handleChange} placeholder="regular assignment "/>
+                                                    <input type="file" id="document" className="form-control" defaultValue={inputs.document} multiple name="document" onChange={handelFile} placeholder="regular assignment "/>
                                                     </div>
                                                 </div>
                                                 <div className="col-12">

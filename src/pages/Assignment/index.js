@@ -49,7 +49,13 @@ function Assignment() {
                                             <td>{d.subject_id}</td>
                                             <td>{d.course_id}</td>
                                             <td>{d.batch_id}</td>
-                                            <td>{d.document}</td>
+                                            <td>
+                                                {
+                                                    d.document && d.document.split(',').map((src, i) => (
+                                                        <img key={i} src={`${process.env.REACT_APP_BACKEND_URL}/assignmentadd/${src}`} alt="assignment" width="50px" />
+                                                    ))
+                                                }
+                                            </td>
                                             <td>{d.date}</td>
                                            
                                             <td>

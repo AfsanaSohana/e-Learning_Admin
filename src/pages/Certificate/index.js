@@ -42,6 +42,7 @@ function Certificate() {
                         <tbody>
                                     {data && data.map((d, key) =>
                                         <tr key={d.id}>
+                                            <td>{d.id}</td>
                                             <td>{d.course?.course_name}</td>
                                             <td>{d.subject?.subject_name}</td>
                                             <td>{d.instructor?.instructor_name}</td>
