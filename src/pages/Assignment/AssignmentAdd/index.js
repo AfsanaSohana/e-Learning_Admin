@@ -139,7 +139,7 @@ function AssignmentAdd() {
                                                       {batch.length > 0 &&
                                                             <select type="text" id="batch_id" className="form-control" defaultValue={inputs.batch_id} name="batch_id" onChange={handleChange} placeholder="Enter class name">
                                                                 <option value="">Select batch</option>
-                                                                    {course.map((d, key) =>
+                                                                    {batch.map((d, key) =>
                                                                         <option value={d.id}>{d.batch_name}</option>
                                                                     )}
                                                             </select>
