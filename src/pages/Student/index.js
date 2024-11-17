@@ -47,13 +47,7 @@ function Student() {
                                             <td>{d.email}</td>
                                             <td>{d.address}</td>
                                             <td>{d.password}</td>
-                                            <td>
-                                                {
-                                                    d.photo && d.photo.split(',').map((src, i) => (
-                                                        <img key={i} src={`${process.env.REACT_APP_BACKEND_URL}/studentadd/${src}`} alt="student" width="50px" />
-                                                    ))
-                                                }
-                                            </td>
+                                           
 
                                             <td>
                                                 <Link to={`/student/edit/${d.id}`} className='btn btn-info' >Edit</Link>
