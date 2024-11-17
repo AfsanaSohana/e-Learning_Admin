@@ -45,10 +45,11 @@ function Assignment() {
                                     {data && data.map((d, key) =>
                                         <tr key={d.id}>
                                           
+                                            <td>{d.id}</td>
                                             <td>{d.assignment_name}</td>
-                                            <td>{d.subject_id}</td>
-                                            <td>{d.course_id}</td>
-                                            <td>{d.batch_id}</td>
+                                            <td>{d.subjec?.subject_name}</td>
+                                            <td>{d.course?.course_name}</td>
+                                            <td>{d.batch?.batch_name}</td>
                                             <td>
                                                 {
                                                     d.document && d.document.split(',').map((src, i) => (

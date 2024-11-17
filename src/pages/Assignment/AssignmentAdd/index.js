@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import axios from '../../../components/axios';
 import AdminLayout from '../../../layout/adminLayout';
 import { useNavigate } from 'react-router-dom';
 import {useParams} from "react-router-dom";
@@ -37,6 +37,7 @@ function AssignmentAdd() {
         if(id){
             getDatas();
         }
+            getRelational();
     }, []);
 
     const handleChange = (event) => {
