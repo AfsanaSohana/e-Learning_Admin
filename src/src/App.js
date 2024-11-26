@@ -28,6 +28,8 @@ import CoursePlan from './pages/CoursePlan';
 import CoursePlanAdd from './pages/CoursePlan/CoursePlanAdd';
 import Attendence from './pages/Attendence';
 import AttendenceAdd from './pages/Attendence/AttendenceAdd';
+import Quiz from '../pages/Quiz';
+import QuizAdd from '../pages/Quiz/QuizAdd';
 
 function App() {
   const isSignedIn = localStorage.getItem("access_token") || false;
@@ -73,6 +75,9 @@ function App() {
           <Route path="/attendence" element={<Attendence />} />
           <Route path="/attendence/add" element={<AttendenceAdd />} />
           <Route path="/attendence/edit/:id" element={<AttendenceAdd />} />
+          <Route path="/quiz" element={<Quiz />} />
+          <Route path="/quiz/add" element={<QuizAdd />} />
+          <Route path="/quiz/edit/:id" element={<QuizAdd />} />
           
           {/* <Route path={"/"} element={
             <Protected isSignedIn={isSignedIn} >

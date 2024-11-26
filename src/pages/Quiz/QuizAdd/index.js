@@ -4,20 +4,19 @@ import AdminLayout from '../../../layout/adminLayout';
 import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 
-function ModuleAdd() {
-    const [inputs, setInputs] = useState({ id: '', course_id: '', batch_id: '',module_name: '', video_id: ''});
+function QuizAdd() {
+    const [inputs, setInputs] = useState({ id: '', course_id: '', question: '',options_1: '',options_2: '',options_3: '',options_4: '', correct_answer: ''});
     const [course, setCourse] = useState([]);
-    const [batch, setBatch] = useState([]);
     const navigate = useNavigate();
     const { id } = useParams();
 
-    // Fetch module data if `id` is present
+    // Fetch quiz data if `id` is present
     const getDatas = () => {
         if (id) {       
-            axios.get(`${process.env.REACT_APP_API_URL}/module/${id}`).then((response) => {
+            axios.get(`${process.env.REACT_APP_API_URL}/quiz/${id}`).then((response) => {
                 setInputs(response.data.data);
             }).catch((error) => {
-                console.error("Error fetching module data", error);
+                console.error("Error fetching quiz data", error);
             });
         }
     };
@@ -26,9 +25,7 @@ function ModuleAdd() {
     const getRelational = async () => {
         try {
             const coursetResponse = await axios.get(`${process.env.REACT_APP_API_URL}/course`);
-            const batchResponse = await axios.get(`${process.env.REACT_APP_API_URL}/batch`);
             setCourse(coursetResponse.data.data);
-            setBatch(batchResponse.data.data);
         } catch (error) {
             console.error("Error fetching relational data", error);
         }
@@ -49,10 +46,10 @@ function ModuleAdd() {
         console.log(inputs);
         
         try {
-            const apiurl = inputs.id ? `/module/edit/${inputs.id}` : `/module/create`;
+            const apiurl = inputs.id ? `/quiz/edit/${inputs.id}` : `/quiz/create`;
             const response = await axios.post(`${process.env.REACT_APP_API_URL}${apiurl}`, inputs);
             console.log(response);
-            navigate('/module');
+            navigate('/quiz');
         } catch (error) {
             console.error("Error submitting the form", error);
         }
@@ -62,7 +59,7 @@ function ModuleAdd() {
         <AdminLayout>
             <div className="main-content container-fluid">
                 <div className="page-title">
-                    <h3>{id ? "Edit Module" : "Add New Module"}</h3>
+                    <h3>{id ? "Edit Quiz" : "Add New Quiz"}</h3>
                 </div>
                 <section id="basic-vertical-layouts">
                     <div className="card">
@@ -89,35 +86,47 @@ function ModuleAdd() {
                                                 </div>
                                             </div>
 
-                                            <div className="col-12">
-                                                <div className="form-group">
-                                                    <label htmlFor="batch_id">Batch</label>
-                                                    {batch.length > 0 ? (
-                                                        <select id="batch_id" className="form-control"
-                                                            value={inputs.batch_id} name="batch_id" onChange={handleChange}>
-                                                            <option value="">Select Batch</option>
-                                                            {batch.map((b) => (
-                                                                <option key={b.id} value={b.id}>{b.batch_name}</option>
-                                                            ))}
-                                                        </select>
-                                                    ) : (
-                                                        <p>Loading batches...</p>
-                                                    )}
-                                                </div>
-                                            </div>
 
                                             <div className="col-12">
                                                 <div className="form-group">
-                                                    <label htmlFor="module_name">Module Name</label>
-                                                    <input type="text" id="module_name" className="form-control"
-                                                        value={inputs.module_name} name="module_name" onChange={handleChange} />
+                                                    <label htmlFor="question">Question</label>
+                                                    <input type="text" id="question" className="form-control"
+                                                        value={inputs.question} name="question" onChange={handleChange} />
                                                 </div>
                                             </div>
                                             <div className="col-12">
                                                 <div className="form-group">
-                                                    <label htmlFor="video_id">Video ID</label>
-                                                    <input type="text" id="video_id" className="form-control"
-                                                        value={inputs.video_id} name="video_id" onChange={handleChange} />
+                                                    <label htmlFor="options_1">Option_1</label>
+                                                    <input type="text" id="options_1" className="form-control"
+                                                        value={inputs.options_1} name="options_1" onChange={handleChange} />
+                                                </div>
+                                            </div>
+                                            <div className="col-12">
+                                                <div className="form-group">
+                                                    <label htmlFor="options_1">Option_2</label>
+                                                    <input type="text" id="options_2" className="form-control"
+                                                        value={inputs.options_2} name="options_2" onChange={handleChange} />
+                                                </div>
+                                            </div>
+                                            <div className="col-12">
+                                                <div className="form-group">
+                                                    <label htmlFor="options_3">Option_3</label>
+                                                    <input type="text" id="options_3" className="form-control"
+                                                        value={inputs.options_3} name="options_3" onChange={handleChange} />
+                                                </div>
+                                            </div>
+                                            <div className="col-12">
+                                                <div className="form-group">
+                                                    <label htmlFor="options_4">Option_4</label>
+                                                    <input type="text" id="options_4" className="form-control"
+                                                        value={inputs.options_4} name="options_4" onChange={handleChange} />
+                                                </div>
+                                            </div>
+                                            <div className="col-12">
+                                                <div className="form-group">
+                                                    <label htmlFor="correct_answer">Answer</label>
+                                                    <input type="text" id="correct_answer" className="form-control"
+                                                        value={inputs.correct_answer} name="correct_answer" onChange={handleChange} />
                                                 </div>
                                             </div>
                                             <div className="col-12 d-flex justify-content-end">
@@ -138,4 +147,4 @@ function ModuleAdd() {
     );
 }
 
-export default ModuleAdd;
+export default QuizAdd;
