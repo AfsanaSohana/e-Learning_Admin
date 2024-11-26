@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import axios from '../../../components/axios';
 import AdminLayout from '../../../layout/adminLayout';
 import { useNavigate } from 'react-router-dom';
 import {useParams} from "react-router-dom";
 
 function AssignmentAdd() {
-      const [inputs, setInputs] = useState({id:'',assignment_name:'',subject_id:'',course_id:'',document:'',date:''});
+        const [inputs, setInputs] = useState({id:'',assignment_name:'',subject_id:'',course_id:'',batch_id:'',document:'',date:''});
+        const [selectedfile, setSelectedFile] = useState([]);
         const [subject, setSubject] = useState([]);
         const [course, setCourse] = useState([]);
+        const [batch, setBatch] = useState([]);
         const navigate=useNavigate();
         const {id} = useParams();
     
@@ -24,6 +26,10 @@ function AssignmentAdd() {
             setCourse(response.data.data);
          
         });
+        axios.get(`${process.env.REACT_APP_API_URL}/batch`).then(function(response) {
+            setBatch(response.data.data);
+         
+        });
         
     }
 
@@ -31,7 +37,7 @@ function AssignmentAdd() {
         if(id){
             getDatas();
         }
-         getRelational()
+            getRelational();
     }, []);
 
     const handleChange = (event) => {
@@ -40,25 +46,37 @@ function AssignmentAdd() {
         setInputs(values => ({...values, [name]: value}));
     }
 
-    const handleSubmit = async(e) => {
-        e.preventDefault();
-        console.log(inputs)
-        
+    // const handleSubmit = async(e) => {
+    //     e.preventDefault();
+    //     console.log(inputs)
+    
+
+        const handelFile = (e) => {
+            setSelectedFile(e.target.files)
+        }
+        const handleSubmit = async (e) => {
+            e.preventDefault();
+
+            const formData = new FormData();
+    
+            for (let i = 0; i < selectedfile.length; i++) {
+                formData.append('files[]', selectedfile[i])
+            }
+    
+            for (const property in inputs) {
+                formData.append(property, inputs[property])
+            }
+         
         try{
             let apiurl='';
             if(inputs.id!=''){
-                apiurl=`/assignment/edit/${inputs.id}`;
+                apiurl=`/assignment/${inputs.id}`;
             }else{
                 apiurl=`/assignment/create`;
             }
+            let res = await axios.post(apiurl, formData)
             
-            let response= await axios({
-                method: 'post',
-                responsiveTYpe: 'json',
-                url: `${process.env.REACT_APP_API_URL}${apiurl}`,
-                data: inputs
-            });
-            console.log(response)
+            console.log(res)
             navigate('/assignment')
         } 
         catch(e){
@@ -106,7 +124,7 @@ function AssignmentAdd() {
                                                                 <select  id="subject_id" className="form-control" defaultValue={inputs.subject_id} name="subject_id" onChange={handleChange} >
                                                                     <option value="">Select subject</option>
                                                                             {subject.map((d, key) =>
-                                                                                <option value={d.id}>{d.subject_id}</option>
+                                                                                <option value={d.id}>{d.subject_name}</option>
                                                                             )}
                                                                 </select>
                                                             }
@@ -119,7 +137,20 @@ function AssignmentAdd() {
                                                             <select type="text" id="course_id" className="form-control" defaultValue={inputs.course_id} name="course_id" onChange={handleChange} placeholder="Enter class name">
                                                                 <option value="">Select Course</option>
                                                                     {course.map((d, key) =>
-                                                                        <option value={d.id}>{d.course_id}</option>
+                                                                        <option value={d.id}>{d.course_name}</option>
+                                                                    )}
+                                                            </select>
+                                                      }
+                                                    </div>
+                                                </div>
+                                                <div className="col-12">
+                                                    <div className="form-group">
+                                                    <label for="course"> Batch </label>
+                                                      {batch.length > 0 &&
+                                                            <select type="text" id="batch_id" className="form-control" defaultValue={inputs.batch_id} name="batch_id" onChange={handleChange} placeholder="Enter class name">
+                                                                <option value="">Select batch</option>
+                                                                    {batch.map((d, key) =>
+                                                                        <option value={d.id}>{d.batch_name}</option>
                                                                     )}
                                                             </select>
                                                       }
@@ -129,7 +160,7 @@ function AssignmentAdd() {
                                                 <div className="col-12">
                                                     <div className="form-group">
                                                     <label for="batch_type"> Document</label>
-                                                    <input type="file" id="document" className="form-control" defaultValue={inputs.document} name="document" onChange={handleChange} placeholder="regular assignment "/>
+                                                    <input type="file" id="document" className="form-control" defaultValue={inputs.document} multiple name="document" onChange={handelFile} placeholder="regular assignment "/>
                                                     </div>
                                                 </div>
                                                 <div className="col-12">

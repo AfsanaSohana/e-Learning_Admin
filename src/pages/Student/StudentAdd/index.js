@@ -40,7 +40,7 @@ function StudentAdd() {
         }
         const handleSubmit = async (e) => {
             e.preventDefault();
-    
+
             const formData = new FormData();
     
             for (let i = 0; i < selectedfile.length; i++) {
@@ -50,7 +50,7 @@ function StudentAdd() {
             for (const property in inputs) {
                 formData.append(property, inputs[property])
             }
-        
+         
         try{
             let apiurl='';
             if(inputs.id!=''){
@@ -58,14 +58,9 @@ function StudentAdd() {
             }else{
                 apiurl=`/student/create`;
             }
+            let res = await axios.post(apiurl, formData)
             
-            let response= await axios({
-                method: 'post',
-                responsiveTYpe: 'json',
-                url: `${process.env.REACT_APP_API_URL}${apiurl,formData}`,
-                data: inputs
-            });
-            console.log(response)
+            console.log(res)
             navigate('/student')
         } 
         catch(e){
@@ -114,6 +109,12 @@ function StudentAdd() {
                                                 </div>
                                                 <div className="col-12">
                                                     <div className="form-group">
+                                                    <label for="email-id-vertical">Contact Number</label>
+                                                    <input type="text" id="contact_number" className="form-control" defaultValue={inputs.contact_number} name="contact_number" onChange={handleChange} placeholder=""/>
+                                                    </div>
+                                                </div>
+                                                <div className="col-12">
+                                                    <div className="form-group">
                                                     <label for="email-id-vertical">Address</label>
                                                     <input type="text" id="address" className="form-control" defaultValue={inputs.address} name="address" onChange={handleChange} placeholder="road,street,city"/>
                                                     </div>
@@ -122,7 +123,7 @@ function StudentAdd() {
                                                 <div className="col-12">
                                                     <div className="form-group">
                                                     <label for="email-id-vertical">photo</label>
-                                                    <input type="file" id="photo" className="form-control" accept="image/*" multiple defaultValue={inputs.photo} name="photo" onChange={handelFile}/>
+                                                    <input type="file" id="photo" className="form-control" accept="image/*" multiple name="photo" onChange={handelFile}/>
                                                     </div>
                                                 </div>
                                                 <div className="col-12">
@@ -146,7 +147,7 @@ function StudentAdd() {
                 </div>
             </section>
         </div>
-    </AdminLayout>    
+    </AdminLayout>     
   )
 }
 

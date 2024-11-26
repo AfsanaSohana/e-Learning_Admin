@@ -35,6 +35,7 @@ function Assignment() {
                                 <th scope="col">Assignment</th>
                                 <th scope="col">Subject</th>
                                 <th scope="col">Course</th>
+                                <th scope="col">Batch</th>
                                 <th scope="col">Document </th>
                                 <th scope="col">Submition Date </th>
                                 <th scope="col">Action</th>
@@ -44,10 +45,18 @@ function Assignment() {
                                     {data && data.map((d, key) =>
                                         <tr key={d.id}>
                                           
+                                            <td>{d.id}</td>
                                             <td>{d.assignment_name}</td>
-                                            <td>{d.subject_id}</td>
-                                            <td>{d.course_id}</td>
-                                            <td>{d.document}</td>
+                                            <td>{d.subjec?.subject_name}</td>
+                                            <td>{d.course?.course_name}</td>
+                                            <td>{d.batch?.batch_name}</td>
+                                            <td>
+                                                {
+                                                    d.document && d.document.split(',').map((src, i) => (
+                                                        <img key={i} src={`${process.env.REACT_APP_BACKEND_URL}/assignmentadd/${src}`} alt="assignment" width="50px" />
+                                                    ))
+                                                }
+                                            </td>
                                             <td>{d.date}</td>
                                            
                                             <td>

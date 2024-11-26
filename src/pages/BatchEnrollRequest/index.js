@@ -11,7 +11,7 @@ function BatchEnrollRequest() {
     }, []);
 
     function getDatas() {
-        axios.get(`${process.env.REACT_APP_API_URL}/batchEnrollRequest`).then(function(response) {
+        axios.get(`${process.env.REACT_APP_API_URL}/batch_en_req`).then(function(response) {
             setData(response.data.data);
         });
     }
@@ -22,7 +22,7 @@ function BatchEnrollRequest() {
         });
     }
      const deleteData = (id) => {
-        axios.delete(`${process.env.REACT_APP_API_URL}/batchEnrollRequest/${id}`).then(function(response){
+        axios.delete(`${process.env.REACT_APP_API_URL}/batch_en_req/${id}`).then(function(response){
             getDatas();
         });
     }

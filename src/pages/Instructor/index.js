@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import axios from '../../components/axios';
 import AdminLayout from '../../layout/adminLayout';
 import { Link } from 'react-router-dom';
 
@@ -11,15 +11,15 @@ function Instructor() {
         getDatas();
     }, []);
 
-    function getDatas() {
-        axios.get(`${process.env.REACT_APP_API_URL}/instructor`).then(function(response) {
-            setData(response.data.data);
-        });
+    const getDatas = async (e) => {
+        let res = await axios.get(`/instructor`)
+        setData(res.data.data);
+
     }
-    const deleteData = (id) => {
-        axios.delete(`${process.env.REACT_APP_API_URL}/instructor/${id}`).then(function(response){
-            getDatas();
-        });
+    const deleteData = async (id) => {
+        let res = await axios.delete(`/instructor/${id}`)
+        getDatas();
+
     }
   return (
     <AdminLayout>
@@ -52,7 +52,11 @@ function Instructor() {
                                             <td>{d.fb_id}</td>
                                             <td>{d.insta_id}</td>
                                             <td>{d.twt_id}</td>
-                                            <td>{d.photo}</td>
+                                            <td>  {
+                                                    d.photo && d.photo.split(',').map((src, i) => (
+                                                        <img key={i} src={`${process.env.REACT_APP_BACKEND_URL}/instructoradd/${src}`} alt="instructor" width="50px" />
+                                                    ))
+                                                }</td>
                                             <td>
                                                 <Link to={`/instructor/edit/${d.id}`} className='btn btn-info' >Edit</Link>
                                                 <button type='button' onClick={() => deleteData(d.id)} className='btn btn-danger'>Delete</button>

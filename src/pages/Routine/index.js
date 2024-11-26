@@ -30,7 +30,8 @@ function Routine() {
                     <table className="table">
                         <thead>
                             <tr>
-                                <th scope="col">Batch ID</th>
+                                <th scope="col">ID</th>
+                                <th scope="col">batch Name</th>
                                 <th scope="col">Day</th>
                                 <th scope="col">Date</th>
                                 <th scope="col">Start</th>
@@ -42,9 +43,10 @@ function Routine() {
                         <tbody>
                                     {data && data.map((d, key) =>
                                         <tr key={d.id}>
-                                            <td>{d.batch_id}</td>
+                                            <td>{d.id}</td>
+                                            <td>{d.batch?.batch_name}</td>
                                             <td>{d.day_name}</td>
-                                            <td>{d.date}</td>
+                                            <td>{d.rdate}</td>
                                             <td>{d.start_time}</td>
                                             <td>{d.end_time}</td>
                                             <td>{d.note}</td>

@@ -37,6 +37,13 @@ function Batch() {
                                 <th scope="col">Instructor </th>
                                 <th scope="col">Course </th>
                                 <th scope="col">Number of Student </th>
+                                <th scope="col">Batch Details </th>
+                                <th scope="col">Number of subject </th>
+                                <th scope="col">daily live </th>
+                                <th scope="col">weekly exam </th>
+                                <th scope="col">Live link </th>
+                                <th scope="col"> Price</th>
+                                <th scope="col">Discount price </th>
                                 <th scope="col">Action</th>
                             </tr>
                         </thead>
@@ -50,7 +57,13 @@ function Batch() {
                                             <td>{d.instructor?.instructor_name}</td>
                                             <td>{d.course?.course_name}</td>
                                              <td>{d.number_of_student}</td>
-                                           
+                                             <td>{d.batch_details}</td>
+                                             <td>{d.number_of_subject}</td>
+                                             <td>{d.daily_live}</td>
+                                             <td>{d.weekly_exam}</td>
+                                             <td>{d.live_link}</td>
+                                             <td>{d.price}</td>
+                                             <td>{d.discount_price}</td>
                                             <td>
                                                 <Link to={`/batch/edit/${d.id}`} className='btn btn-info' >Edit</Link>
                                                 <button type='button' onClick={() => deleteData(d.id)} className='btn btn-danger'>Delete</button>

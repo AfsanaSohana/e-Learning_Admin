@@ -4,7 +4,7 @@ import AdminLayout from '../../../layout/adminLayout';
 import { useNavigate } from 'react-router-dom';
 import {useParams} from "react-router-dom";
 
-function BatchEnrollRequestAdd() {
+function BatchEnrollAdd() {
     const [inputs, setInputs] = useState({id:'',batch_id:'',course_id:'',student_id:'',status:'',enroll_date:'',fees:''});
     const [batch, setBatch] = useState([]);
     const [course, setCourse] = useState([]);
@@ -13,7 +13,7 @@ function BatchEnrollRequestAdd() {
     const {id} = useParams();
     
     function getDatas(){
-        axios.get(`${process.env.REACT_APP_API_URL}/batchEnrollRequest/${id}`).then(function(response) {
+        axios.get(`${process.env.REACT_APP_API_URL}/batchEnroll/${id}`).then(function(response) {
             setInputs(response.data.data);
         });
     }
@@ -50,9 +50,9 @@ function BatchEnrollRequestAdd() {
         try {
             let apiurl = '';
             if(inputs.id !== ''){
-                apiurl = `/batchEnrollRequest/edit/${inputs.id}`;
+                apiurl = `/batchEnroll/edit/${inputs.id}`;
             } else {
-                apiurl = `/batchEnrollRequest/create`;
+                apiurl = `/batchEnroll/create`;
             }
             
             let response = await axios({
@@ -62,7 +62,7 @@ function BatchEnrollRequestAdd() {
                 data: inputs
             });
             console.log(response);
-            navigate('/batchEnrollRequest');
+            navigate('/batchEnroll');
         } 
         catch(e) {
             console.log(e);
@@ -75,7 +75,7 @@ function BatchEnrollRequestAdd() {
                 <div className="page-title">
                     <div className="row">
                         <div className="col-12 col-md-6 order-md-1 order-last">
-                            <h3>Add New BatchEnrollRequest</h3>
+                            <h3>Add New BatchEnroll</h3>
                         </div>
                         <div className="col-12 col-md-6 order-md-2 order-first">
                             <nav aria-label="breadcrumb" className='breadcrumb-header'>
@@ -171,4 +171,4 @@ function BatchEnrollRequestAdd() {
     );
 }
 
-export default BatchEnrollRequestAdd;
+export default BatchEnrollAdd;

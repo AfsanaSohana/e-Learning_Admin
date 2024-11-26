@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import axios from '../../../components/axios';
 import AdminLayout from '../../../layout/adminLayout';
 import { useNavigate } from 'react-router-dom';
 import {useParams} from "react-router-dom";
 
 function InstructorAdd() {
       const [inputs, setInputs] = useState({id:'',instructor_name:'',designation:'',contact_number:'',email:'',fb_id:'',insta_id:'',twt_id:'',photo:''});
+      const [selectedfile, setSelectedFile] = useState([]);
     const navigate=useNavigate();
     const {id} = useParams();
     
@@ -27,25 +28,36 @@ function InstructorAdd() {
         setInputs(values => ({...values, [name]: value}));
     }
 
-    const handleSubmit = async(e) => {
-        e.preventDefault();
-        console.log(inputs)
+    // const handleSubmit = async(e) => {
+    //     e.preventDefault();
+    //     console.log(inputs)
         
+    const handelFile = (e) => {
+        setSelectedFile(e.target.files)
+    }
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        const formData = new FormData();
+
+        for (let i = 0; i < selectedfile.length; i++) {
+            formData.append('files[]', selectedfile[i])
+        }
+
+        for (const property in inputs) {
+            formData.append(property, inputs[property])
+        }
         try{
             let apiurl='';
             if(inputs.id!=''){
-                apiurl=`/instructor/edit/${inputs.id}`;
+                apiurl=`/instructor/${inputs.id}`;
             }else{
                 apiurl=`/instructor/create`;
             }
             
-            let response= await axios({
-                method: 'post',
-                responsiveTYpe: 'json',
-                url: `${process.env.REACT_APP_API_URL}${apiurl}`,
-                data: inputs
-            });
-            console.log(response)
+            let res = await axios.post(apiurl, formData)
+            
+            console.log(res)
             navigate('/instructor')
         } 
         catch(e){
@@ -88,7 +100,7 @@ function InstructorAdd() {
                                                 <div className="col-12">
                                                     <div className="form-group">
                                                     <label for="email-id-vertical">Designation</label>
-                                                    <input type="text" id="designation" className="form-control" defaultValue={inputs.designation} name="designation" onChange={handleChange} placeholder="inatructor"/>
+                                                    <input type="text" id="designation" className="form-control" defaultValue={inputs.designation} name="designation" onChange={handleChange} placeholder="instructor"/>
                                                     </div>
                                                 </div>
                                                 <div className="col-12">
@@ -124,7 +136,7 @@ function InstructorAdd() {
                                                 <div className="col-12">
                                                     <div className="form-group">
                                                     <label for="email-id-vertical">Photo</label>
-                                                    <input type="file" id="photo" className="form-control" defaultValue={inputs.photo} name="photo" onChange={handleChange} accept='image/*'/>
+                                                    <input type="file" id="photo" className="form-control" defaultValue={inputs.photo} multiple name="photo" onChange={handelFile} accept='image/*'/>
                                                     </div>
                                                 </div>
                                                 
