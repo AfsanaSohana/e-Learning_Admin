@@ -43,8 +43,12 @@ function QuizAdd() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(inputs);
-        
+    
+        if (!inputs.course_id || !inputs.question || !inputs.correct_answer) {
+            alert("Please fill all the required fields!");
+            return;
+        }
+    
         try {
             const apiurl = inputs.id ? `/quiz/edit/${inputs.id}` : `/quiz/create`;
             const response = await axios.post(`${process.env.REACT_APP_API_URL}${apiurl}`, inputs);
@@ -52,9 +56,9 @@ function QuizAdd() {
             navigate('/quiz');
         } catch (error) {
             console.error("Error submitting the form", error);
+            alert("Failed to save the quiz. Please try again.");
         }
     };
-
     return (
         <AdminLayout>
             <div className="main-content container-fluid">
