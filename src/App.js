@@ -34,6 +34,8 @@ import Assignment from './pages/Assignment';
 import AssignmentAdd from './pages/Assignment/AssignmentAdd';
 import Module from './pages/Module';
 import ModuleAdd from './pages/Module/ModuleAdd';
+import Quiz from './pages/Quiz';
+import QuizAdd from './pages/Quiz/QuizAdd';
 
 function App() {
   const isSignedIn = localStorage.getItem("access_token") || false;
@@ -88,6 +90,9 @@ function App() {
           <Route path="/module" element={<Module />} />
           <Route path="/module/add" element={<ModuleAdd />} />
           <Route path="/module/edit/:id" element={<ModuleAdd />} />
+          <Route path="/quiz" element={<Quiz />} />
+          <Route path="/quiz/add" element={<QuizAdd />} />
+          <Route path="/quiz/edit/:id" element={<ModuleAdd />} />
           
           {/* <Route path={"/"} element={
             <Protected isSignedIn={isSignedIn} >
