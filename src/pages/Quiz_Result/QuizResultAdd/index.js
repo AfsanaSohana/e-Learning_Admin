@@ -5,18 +5,19 @@ import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 
 function QuizAdd() {
-    const [inputs, setInputs] = useState({ id: '', course_id: '', question: '',options_1: '',options_2: '',options_3: '',options_4: '', correct_answer: ''});
+    const [inputs, setInputs] = useState({ id: '', student_id: '',course_id: '', total_question: '', correct_answers: ''});
+    const [student, setStudent] = useState([]);
     const [course, setCourse] = useState([]);
-    const navigate = useNavigate();
+    const navigate = useNavigate(); 
     const { id } = useParams();
 
-    // Fetch quiz data if `id` is present
+    // Fetch quizResult data if `id` is present
     const getDatas = () => {
         if (id) {       
-            axios.get(`${process.env.REACT_APP_API_URL}/quiz/${id}`).then((response) => {
+            axios.get(`${process.env.REACT_APP_API_URL}/quizResult/${id}`).then((response) => {
                 setInputs(response.data.data);
             }).catch((error) => {
-                console.error("Error fetching quiz data", error);
+                console.error("Error fetching quizResult data", error);
             });
         }
     };
@@ -24,8 +25,10 @@ function QuizAdd() {
     // Fetch relational data (subject and batch)
     const getRelational = async () => {
         try {
-            const coursetResponse = await axios.get(`${process.env.REACT_APP_API_URL}/course`);
-            setCourse(coursetResponse.data.data);
+            const courseResponse = await axios.get(`${process.env.REACT_APP_API_URL}/course`);
+            const studentResponse = await axios.get(`${process.env.REACT_APP_API_URL}/student`);
+            setCourse(courseResponse.data.data);
+            setStudent(studentResponse.data.data);
         } catch (error) {
             console.error("Error fetching relational data", error);
         }
@@ -44,26 +47,26 @@ function QuizAdd() {
     const handleSubmit = async (e) => {
         e.preventDefault();
     
-        if (!inputs.course_id || !inputs.question || !inputs.correct_answer) {
+        if (!inputs.course_id || !inputs.question || !inputs.correct_answers) {
             alert("Please fill all the required fields!");
             return;
         }
     
         try {
-            const apiurl = inputs.id ? `/quiz/edit/${inputs.id}` : `/quiz/create`;
+            const apiurl = inputs.id ? `/quizResult/edit/${inputs.id}` : `/quizResult/create`;
             const response = await axios.post(`${process.env.REACT_APP_API_URL}${apiurl}`, inputs);
             console.log(response);
-            navigate('/quiz');
+            navigate('/quizResult');
         } catch (error) {
             console.error("Error submitting the form", error);
-            alert("Failed to save the quiz. Please try again.");
+            alert("Failed to save the quizResult. Please try again.");
         }
     };
     return (
         <AdminLayout>
             <div className="main-content container-fluid">
                 <div className="page-title">
-                    <h3>{id ? "Edit Quiz" : "Add New Quiz"}</h3>
+                    <h3>{id ? "Edit QuizResult" : "Add New QuizResult"}</h3>
                 </div>
                 <section id="basic-vertical-layouts">
                     <div className="card">

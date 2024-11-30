@@ -30,8 +30,8 @@ function Quiz() {
                     <table className="table">
                         <thead>
                             <tr>
+                                <th scope="col">Student ID</th>
                                 <th scope="col">Course ID</th>
-                                <th scope="col">Question</th>
                                 <th scope="col">Question Type</th>
                                 <th scope="col">Option-1</th>
                                 <th scope="col">Option-2</th>
@@ -43,14 +43,10 @@ function Quiz() {
                         <tbody>
                             {data && data.map((d, key) =>
                                 <tr key={d.id}>
+                                    <td>{d.student?.student_name}</td>
                                     <td>{d.course?.course_name}</td>
-                                    <td>{d.question}</td>
-                                     <td>{d.question_type ? 'other type':'true false'}</td>
-                                    <td>{d.options_1}</td>
-                                    <td>{d.options_2}</td>
-                                    <td>{d.options_3}</td>
-                                    <td>{d.options_4}</td>
-                                    <td>{d.correct_answer}</td>
+                                    <td>{d.total_question}</td>
+                                    <td>{d.correct_answers}</td>
                                     <td>
                                         <Link to={`/quiz/edit/${d.id}`} className='btn btn-info' >Edit</Link>
                                         <button type='button' onClick={() => deleteData(d.id)} className='btn btn-danger'>Delete</button>

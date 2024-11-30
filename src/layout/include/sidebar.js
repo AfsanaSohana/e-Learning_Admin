@@ -182,6 +182,14 @@ function Sidebar() {
                                     
                                 </div>
                             </div>
+                            <div className="nav-item dropdown">
+                                <a href="#" className="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i className="fa fa-list-alt ms-2 me-2"></i>Quiz result </a>
+                                <div className="dropdown-menu bg-transparent border-0">
+                                    <Link to='/quizResult/add'className="dropdown-item"> Add New </Link>
+                                    <Link to='/quiz'className="dropdown-item"> list </Link>
+                                    
+                                </div>
+                            </div>
                             
                         </div>
                     </nav>
