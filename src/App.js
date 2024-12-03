@@ -36,6 +36,8 @@ import Module from './pages/Module';
 import ModuleAdd from './pages/Module/ModuleAdd';
 import Quiz from './pages/Quiz';
 import QuizAdd from './pages/Quiz/QuizAdd';
+import CertificateApplyRequest from './pages/BatchEnrollRequest copy';
+import CertificateApplyRequestAdd from './pages/BatchEnrollRequest copy/BatchEnrollRequestAdd';
 
 function App() {
   const isSignedIn = localStorage.getItem("access_token") || false;
@@ -75,6 +77,9 @@ function App() {
           <Route path="/batchEnrollRequest" element={<BatchEnrollRequest />} />
           <Route path="/batchEnrollRequest/add" element={<BatchEnrollRequestAdd />} />
           <Route path="/batchEnrollRequest/edit/:id" element={<BatchEnrollRequestAdd />} />
+          <Route path="/certificateApplyRequest" element={<CertificateApplyRequest />} />
+          <Route path="/certificateApplyRequest/add" element={<CertificateApplyRequestAdd/>} />
+          <Route path="/certificateApplyRequest/edit/:id" element={<BatchEnrollRequestAdd />} />
           <Route path="/certificate" element={<Certificate />} />
           <Route path="/certificate/add" element={<CertificateAdd />} />
           <Route path="/certificate/edit/:id" element={<CertificateAdd />} />
