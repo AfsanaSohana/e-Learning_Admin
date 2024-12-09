@@ -22,6 +22,8 @@ import Subject from './pages/Subject';
 import SubjectAdd from './pages/Subject/SubjectAdd';
 import BatchEnrollRequest from './pages/BatchEnrollRequest';
 import BatchEnrollRequestAdd from './pages/BatchEnrollRequest/BatchEnrollRequestAdd';
+import BatchEnroll from './pages/BatchEnroll';
+import BatchEnrollAdd from './pages/BatchEnroll/BatchEnrollAdd';
 import Certificate from './pages/Certificate';
 import CertificateAdd from './pages/Certificate/CertificateAdd';
 import CoursePlan from './pages/CoursePlan';
@@ -36,8 +38,8 @@ import Module from './pages/Module';
 import ModuleAdd from './pages/Module/ModuleAdd';
 import Quiz from './pages/Quiz';
 import QuizAdd from './pages/Quiz/QuizAdd';
-import CertificateApplyRequest from './pages/BatchEnrollRequest copy';
-import CertificateApplyRequestAdd from './pages/BatchEnrollRequest copy/BatchEnrollRequestAdd';
+import CertificateApplyRequest from './pages/CertificateApplyRequest';
+import CertificateApplyRequestAdd from './pages/CertificateApplyRequest/CertificateApplyRequestAdd';
 
 function App() {
   const isSignedIn = localStorage.getItem("access_token") || false;
@@ -77,9 +79,14 @@ function App() {
           <Route path="/batchEnrollRequest" element={<BatchEnrollRequest />} />
           <Route path="/batchEnrollRequest/add" element={<BatchEnrollRequestAdd />} />
           <Route path="/batchEnrollRequest/edit/:id" element={<BatchEnrollRequestAdd />} />
+
+          <Route path="/batchEnroll" element={<BatchEnroll/>} />
+          <Route path="/batchEnroll/add" element={<BatchEnrollAdd />} />
+          <Route path="/batchEnroll/edit/:id" element={<BatchEnrollAdd />} />
+
           <Route path="/certificateApplyRequest" element={<CertificateApplyRequest />} />
           <Route path="/certificateApplyRequest/add" element={<CertificateApplyRequestAdd/>} />
-          <Route path="/certificateApplyRequest/edit/:id" element={<BatchEnrollRequestAdd />} />
+          <Route path="/certificateApplyRequest/edit/:id" element={<CertificateApplyRequestAdd />} />
           <Route path="/certificate" element={<Certificate />} />
           <Route path="/certificate/add" element={<CertificateAdd />} />
           <Route path="/certificate/edit/:id" element={<CertificateAdd />} />
